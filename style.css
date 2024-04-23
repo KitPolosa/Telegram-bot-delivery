@@ -35,6 +35,11 @@ body {
 
 .item {
     text-align: center;
+    margin: 0;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    /*overflow: hidden; */
 }
 
 .btn {
@@ -65,38 +70,4 @@ body {
     font-weight: 700;
 
     transition: background .2s linear;
-}
-
-.block {
-  display: block;
-}
-
-.block:not(:last-child) {
-  margin-bottom: -60px;
-}
-
-.block::before {
-  display: block;
-  font-size: 120%;
-  font-weight: bold;
-}
-
-.block.no-object-fit::before {
-  content: 'Без object-fit: cover';
-}
-
-.block.object-fit::before {
-  content: 'object-fit: cover';
-}
-
-.block .image {
-  display: inline-block;
-  width: 120px;
-  height: 120px;
-}
-
-.block.object-fit img {
-  max-width: 100%; /* Максимальная ширина картинки */
-  min-height: 100%; /* Минимальная высота картинки */
-  object-fit: cover; /* Всю, выше указанную, облась заполнить картинкой */
 }

@@ -8,6 +8,8 @@ from handlers.start import get_start
 from state.register import RegisterState
 from handlers.register import start_register, register_name, register_phone, register_address
 from aiogram.filters import Command
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 
 load_dotenv()
 
@@ -16,6 +18,8 @@ admin_id = os.getenv('ADMIN_ID')
 
 bot = Bot(token=token, parse_mode='HTML')
 dp = Dispatcher()
+
+web_app = WebAppInfo(url='https://kitpolosa.github.io/')
 
 async def start_bot(bot: Bot):
     await bot.send_message(admin_id, text='Здарова заебал')
@@ -39,7 +43,7 @@ async def web_app(callback_query):
 {message}
 """)
 
-    await bot.send_message('-1002063166054', f"""
+    await bot.send_message('5275057849', f"""
 Новый заказ ✅
 
 {message}
