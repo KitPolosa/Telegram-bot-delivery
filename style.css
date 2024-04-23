@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    color: var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
+    text-align: center;
+}
+
+.hi {
+    margin-top: 20px;
+
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 390px;
+}
+
+.inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 300px 300px;
+    grid-gap: 50px
+}
+
+.img {
+    width: 50%;
+    height: 55%;
+}
+
+.item {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 10px;
+    border: none;
+    background: rgb(248, 168, 24);
+    border-radius: 10px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    transition: background .2s linear;
+}
+
+.btn:hover {
+    background: lightgreen;
+}
+
+.added-to-cart {
+    display: inline-block;
+    padding: 10px 10px;
+    border: none;
+    background: rgb(205, 49, 49);
+    border-radius: 10px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    transition: background .2s linear;
+}
+
+.block {
+  display: block;
+}
+
+.block:not(:last-child) {
+  margin-bottom: -60px;
+}
+
+.block::before {
+  display: block;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.block.no-object-fit::before {
+  content: 'Без object-fit: cover';
+}
+
+.block.object-fit::before {
+  content: 'object-fit: cover';
+}
+
+.block .image {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+}
+
+.block.object-fit img {
+  max-width: 100%; /* Максимальная ширина картинки */
+  min-height: 100%; /* Минимальная высота картинки */
+  object-fit: cover; /* Всю, выше указанную, облась заполнить картинкой */
+}
