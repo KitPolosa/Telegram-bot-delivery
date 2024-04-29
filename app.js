@@ -3,8 +3,14 @@ tg.expand();
 tg.MainButton.textColor = '#FFFFFF'
 tg.MainButton.color = '#2cab37';
 let items = {
-    item1: { id: "item1", price: 80, quantity: 0 },
-    item2: { id: "item2", price: 120, quantity: 0 }
+    item1: { id: "item1", price: 80, quantity: 10 },
+    item2: { id: "item2", price: 120, quantity: 10 },
+    item3: { id: "item3", price: 70, quantity: 10 },
+    item4: { id: "item4", price: 470, quantity: 10 },
+    item5: { id: "item5", price: 100, quantity: 10 },
+    item6: { id: "item6", price: 150, quantity: 10 },
+    item7: { id: "item7", price: 110, quantity: 10 },
+    item8: { id: "item8", price: 70, quantity: 10 }
 };
 
 function updateQuantity(itemId, change) {
