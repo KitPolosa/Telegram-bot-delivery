@@ -1,16 +1,16 @@
 let tg = window.Telegram.WebApp;
 tg.expand();
-tg.MainButton.textColor = '#FFFFFF'
+tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#2cab37';
 let items = {
-    item1: { id: "item1", price: 80, quantity: 10 },
-    item2: { id: "item2", price: 120, quantity: 10 },
-    item3: { id: "item3", price: 70, quantity: 10 },
-    item4: { id: "item4", price: 470, quantity: 10 },
-    item5: { id: "item5", price: 100, quantity: 10 },
-    item6: { id: "item6", price: 150, quantity: 10 },
-    item7: { id: "item7", price: 110, quantity: 10 },
-    item8: { id: "item8", price: 70, quantity: 10 }
+    item1: { id: "item1", price: 80, quantity: 0 },
+    item2: { id: "item2", price: 120, quantity: 0 },
+    item3: { id: "item3", price: 70, quantity: 0 },
+    item4: { id: "item4", price: 470, quantity: 0 },
+    item5: { id: "item5", price: 100, quantity: 0 },
+    item6: { id: "item6", price: 150, quantity: 0 },
+    item7: { id: "item7", price: 110, quantity: 0 },
+    item8: { id: "item8", price: 70, quantity: 0 }
 };
 
 function updateQuantity(itemId, change) {
@@ -19,6 +19,7 @@ function updateQuantity(itemId, change) {
     if (item.quantity < 0) item.quantity = 0;
     if (item.quantity > 10) item.quantity = 10;
     document.getElementById("qty" + itemId.slice(-1)).innerText = item.quantity;
+    toggleItem(itemId);
 }
 
 function toggleItem(itemId) {
@@ -26,15 +27,9 @@ function toggleItem(itemId) {
     let btn = document.getElementById("add" + itemId.slice(-1));
     let subtractBtn = document.getElementById("subtract" + itemId.slice(-1));
 
-    if (item.quantity === 0) {
-        btn.classList.remove('added-to-cart');
-        subtractBtn.style.display = 'none';
-        btn.style.display = 'inline-block';
-    } else {
-        btn.classList.add('added-to-cart');
-        btn.style.display = 'none';
-        subtractBtn.style.display = 'inline-block';
-    }
+    btn.classList.remove('added-to-cart');
+    btn.style.display = 'inline-block';
+    subtractBtn.style.display = 'inline-block';
 
     let totalPrice = calculateTotalPrice();
     if (totalPrice > 0) {
@@ -61,12 +56,10 @@ function calculateTotalPrice() {
 
 document.getElementById("add1").addEventListener("click", function() {
     updateQuantity("item1", 1);
-    toggleItem("item1");
 });
 
 document.getElementById("subtract1").addEventListener("click", function() {
     updateQuantity("item1", -1);
-    toggleItem("item1");
 });
 
 document.getElementById("add2").addEventListener("click", function() {
