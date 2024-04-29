@@ -1,85 +1,134 @@
 let tg = window.Telegram.WebApp;
-
 tg.expand();
-
 tg.MainButton.textColor = '#FFFFFF'
 tg.MainButton.color = '#2cab37';
+let items = {
+    item1: { id: "item1", price: 80, quantity: 0 },
+    item2: { id: "item2", price: 120, quantity: 0 }
+};
 
-let items = [];
+function updateQuantity(itemId, change) {
+    let item = items[itemId];
+    item.quantity += change;
+    if (item.quantity < 0) item.quantity = 0;
+    if (item.quantity > 10) item.quantity = 10;
+    document.getElementById("qty" + itemId.slice(-1)).innerText = item.quantity;
+}
 
-function toggleItem(btn, itemId, price) {
-    let item = items.find(i => i.id === itemId);
-    if (!item) {
-        let newItem = { id: itemId, price: price };
-        items.push(newItem);
-        btn.classList.add('added-to-cart');
-        btn.innerText = 'Удалить из корзины';
-        let totalPrice = items.reduce((total, item) => total + item.price, 0);
-        if (totalPrice > 0) {
-            tg.MainButton.setText(`Общая цена товаров: ${totalPrice}`);
-            if (!tg.MainButton.isVisible) {
-                tg.MainButton.show();
-            }
-        } else {
-            tg.MainButton.hide();
-        }
+function toggleItem(itemId) {
+    let item = items[itemId];
+    let btn = document.getElementById("add" + itemId.slice(-1));
+    let subtractBtn = document.getElementById("subtract" + itemId.slice(-1));
 
-    } else {
-        let index = items.indexOf(item);
-        items.splice(index, 1);
+    if (item.quantity === 0) {
         btn.classList.remove('added-to-cart');
-        btn.innerText = "Добавить в корзину";
-        let totalPrice = items.reduce((total, item) => total + item.price, 0)
-        if (totalPrice > 0) {
-            tg.MainButton.setText(`Общая цена товаров: ${totalPrice}`);
-            if (!tg.MainButton.isVisible) {
-                tg.MainButton.show();
-            }
-        } else {
-            tg.MainButton.hide();
+        subtractBtn.style.display = 'none';
+        btn.style.display = 'inline-block';
+    } else {
+        btn.classList.add('added-to-cart');
+        btn.style.display = 'none';
+        subtractBtn.style.display = 'inline-block';
+    }
+
+    let totalPrice = calculateTotalPrice();
+    if (totalPrice > 0) {
+        tg.MainButton.setText(`Общая цена товаров: ${totalPrice}`);
+        if (!tg.MainButton.isVisible) {
+            tg.MainButton.show();
         }
+    } else {
+        tg.MainButton.hide();
     }
 }
 
 Telegram.WebApp.onEvent("mainButtonClicked", function() {
     let data = {
-        items: items,
+        items: Object.values(items).filter(item => item.quantity > 0),
         totalPrice: calculateTotalPrice()
     };
     tg.sendData(JSON.stringify(data));
 });
+
 function calculateTotalPrice() {
-    return items.reduce((total, item) => total + item.price, 0);
+    return Object.values(items).reduce((total, item) => total + (item.price * item.quantity), 0);
 }
 
-document.getElementById("btn1").addEventListener("click", function() {
-    toggleItem(this, "item1", 80);
+document.getElementById("add1").addEventListener("click", function() {
+    updateQuantity("item1", 1);
+    toggleItem("item1");
 });
 
-document.getElementById("btn2").addEventListener("click", function() {
-    toggleItem(this, "item2", 55);
+document.getElementById("subtract1").addEventListener("click", function() {
+    updateQuantity("item1", -1);
+    toggleItem("item1");
 });
 
-document.getElementById("btn3").addEventListener("click", function() {
-    toggleItem(this, "item3", 70);
+document.getElementById("add2").addEventListener("click", function() {
+    updateQuantity("item2", 1);
+    toggleItem("item2");
 });
 
-document.getElementById("btn4").addEventListener("click", function() {
-    toggleItem(this, "item4", 47);
+document.getElementById("subtract2").addEventListener("click", function() {
+    updateQuantity("item2", -1);
+    toggleItem("item2");
 });
 
-document.getElementById("btn5").addEventListener("click", function() {
-    toggleItem(this, "item5", 100);
+document.getElementById("add3").addEventListener("click", function() {
+    updateQuantity("item3", 1);
+    toggleItem("item3");
 });
 
-document.getElementById("btn6").addEventListener("click", function() {
-    toggleItem(this, "item6", 150);
+document.getElementById("subtract3").addEventListener("click", function() {
+    updateQuantity("item3", -1);
+    toggleItem("item3");
 });
 
-document.getElementById("btn7").addEventListener("click", function() {
-    toggleItem(this, "item7", 110);
+document.getElementById("add4").addEventListener("click", function() {
+    updateQuantity("item4", 1);
+    toggleItem("item4");
 });
 
-document.getElementById("btn8").addEventListener("click", function() {
-    toggleItem(this, "item8", 70);
+document.getElementById("subtract4").addEventListener("click", function() {
+    updateQuantity("item4", -1);
+    toggleItem("item4");
+});
+
+document.getElementById("add5").addEventListener("click", function() {
+    updateQuantity("item5", 1);
+    toggleItem("item5");
+});
+
+document.getElementById("subtract5").addEventListener("click", function() {
+    updateQuantity("item5", -1);
+    toggleItem("item5");
+});
+
+document.getElementById("add6").addEventListener("click", function() {
+    updateQuantity("item6", 1);
+    toggleItem("item6");
+});
+
+document.getElementById("subtract6").addEventListener("click", function() {
+    updateQuantity("item6", -1);
+    toggleItem("item6");
+});
+
+document.getElementById("add7").addEventListener("click", function() {
+    updateQuantity("item7", 1);
+    toggleItem("item7");
+});
+
+document.getElementById("subtract7").addEventListener("click", function() {
+    updateQuantity("item7", -1);
+    toggleItem("item7");
+});
+
+document.getElementById("add8").addEventListener("click", function() {
+    updateQuantity("item8", 1);
+    toggleItem("item8");
+});
+
+document.getElementById("subtract8").addEventListener("click", function() {
+    updateQuantity("item8", -1);
+    toggleItem("item8");
 });
