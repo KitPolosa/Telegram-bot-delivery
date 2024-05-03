@@ -10,6 +10,8 @@ from handlers.register import start_register, register_name, register_phone, reg
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+from keyboards.categories import categories_kb
+from aiogram import types
 
 load_dotenv()
 
@@ -27,15 +29,20 @@ async def start_bot(bot: Bot):
 dp.startup.register(start_bot)
 dp.message.register(get_start, Command(commands='start'))
 
+@dp.message(F.text == 'Каталог')
+async def process_catalog_button_click(message: types.Message):
+    await message.answer("Выберите категорию:", reply_markup=categories_kb)
+
 @dp.message()
 async def web_app(callback_query):
     json_data = callback_query.web_app_data.data
     parsed_data = json.loads(json_data)
     message = ""
-    for i, item in enumerate(parsed_data['items'], start=1):
-        position = int(item['id'].replace('item', ''))
-        message += f"Позиция {position}\n"
-        message += f"Стоимость: {item['price']}\n\n"
+    for item in parsed_data['items']:
+        product_name = item['name']
+        price = item['price']
+        message += f"Продукт: {product_name}\n"
+        message += f"Стоимость: {price}\n\n"
 
     message += f"Общая стоимость: {parsed_data['totalPrice']}"
 

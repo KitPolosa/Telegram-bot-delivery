@@ -12,7 +12,7 @@
         <div class="container">
             <div class="inner">
                 <div class="item" id="item1">
-                    <img src="image/11.png" alt="" class="img">
+                    <img src="image/11.png" alt="" class="img" id="open-modal-btn" onclick="openModal(this)">
                     <p>Молоко коровка из кореновки 2,5%</p>
                     <p>80 ₽</p>
                     <div class="btn-container">
@@ -23,8 +23,8 @@
                 </div>
 
                 <div class="item" id="item2">
-                    <img src="image/22.png" alt="" class="img">
-                    <p>Масло сливочное 82,5%</p>
+                    <img src="image/22.png" alt="" class="img" id="open-modal-btn2" onclick="openModal(this)">
+                    <p>Масло сливочное кубанский молочник 82,5%</p>
                     <p>120 ₽</p>
                     <div class="btn-container">
                         <button class="btn" id="add2">+</button>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="item" id="item3">
-                    <img src="image/88.png" alt="" class="img">
+                    <img src="image/88.png" alt="" class="img" id="open-modal-btn3" onclick="openModal(this)">
                     <p>Творог коровка из кореновки 9%</p>
                     <p>70 ₽</p>
                     <div class="btn-container">
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="item" id="item4">
-                    <img src="image/44.png" alt="" class="img">
+                    <img src="image/44.png" alt="" class="img" id="open-modal-btn4" onclick="openModal(this)">
                     <p>Пломбир коровка из кореновки</p>
                     <p>47 ₽</p>
                     <div class="btn-container">
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="item" id="item5">
-                    <img src="image/33.png" alt="" class="img">
+                    <img src="image/33.png" alt="" class="img" id="open-modal-btn5" onclick="openModal(this)">
                     <p>Кефир коровка из кореновки 2,5%</p>
                     <p>100 ₽</p>
                     <div class="btn-container">
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="item" id="item6">
-                    <img src="image/66.png" alt="" class="img">
+                    <img src="image/66.png" alt="" class="img" id="open-modal-btn6" onclick="openModal(this)">
                     <p>Ряженка коровка из кореновки 2,5%</p>
                     <p>150 ₽</p>
                     <div class="btn-container">
@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="item" id="item7">
-                    <img src="image/77.png" alt="" class="img">
+                    <img src="image/77.png" alt="" class="img" id="open-modal-btn7" onclick="openModal(this)">
                     <p>Йогурт коровка из кореновки</p>
                     <p>110 ₽</p>
                     <div class="btn-container">
@@ -89,13 +89,213 @@
                 </div>
 
                 <div class="item" id="item8">
-                    <img src="image/55.png" alt="" class="img">
+                    <img src="image/55.png" alt="" class="img" id="open-modal-btn8" onclick="openModal(this)">
                     <p>Сгущенка коровка из кореновки 8,5%</p>
                     <p>70 ₽</p>
                     <div class="btn-container">
                         <button class="btn" id="add8">+</button>
                         <span id="qty8">0</span>
                         <button class="btn" id="subtract8">-</button>
+                    </div>
+                </div>
+
+                <div class="modal" id="my-modal">
+                    <div class="modal_box">
+                        <button class="modal_close-btn" id="close-my-modal-btn" onclick="closeModal()">
+                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
+                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
+                            </svg>
+                        </button>
+                        <img src="image/11.png" alt="" class="img">
+                        <h2>Молоко коровка из кореновки 2,5%</h2>
+
+                        <p class="left"><span class="grey">Состав</span><br>
+                            Цельное молоко, обезжиренное молоко<br>
+                            <span class="grey">Количество</span><br>
+                            900 мл<br>
+                            <span class="grey">Цена</span><br>
+                            80 ₽<br>
+                            <span class="grey">Пищевая ценность на 100 г</span><br>
+                            Белки: 3.0 г Жиры: 2,5 г Углеводы: 4,7 Калории: 55.0 ккал<br>
+                            <span class="grey">Срок годности</span><br>
+                            9 суток при температуре (4±2)°C
+                        </p>
+                    </div>
+                </div>
+
+                <div class="modal" id="my-modal2">
+                    <div class="modal_box">
+                        <button class="modal_close-btn" id="close-my-modal-btn2" onclick="closeModal()">
+                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
+                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
+                            </svg>
+                        </button>
+                        <img src="image/22.png" alt="" class="img">
+                        <h2>Масло сливочное кубанский молочник 82,5%</h2>
+
+                        <p class="left"><span class="grey">Состав</span><br>
+                            Пастеризованные сливки<br>
+                            <span class="grey">Количество</span><br>
+                            170 г<br>
+                            <span class="grey">Цена</span><br>
+                            120 ₽<br>
+                            <span class="grey">Пищевая ценность на 100 г</span><br>
+                            Белки: 0.6 г, Жиры: 82,5 г, Углеводы: 0,8, Калории: 748.0 ккал<br>
+                            <span class="grey">Срок годности</span><br>
+                            7 суток при температуре (4±2)°C
+                        </p>
+                    </div>
+                </div>
+
+                <div class="modal" id="my-modal3">
+                    <div class="modal_box">
+                        <button class="modal_close-btn" id="close-my-modal-btn3" onclick="closeModal()">
+                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
+                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
+                            </svg>
+                        </button>
+                        <img src="image/88.png" alt="" class="img">
+                        <h2>Творог коровка из кореновки 9%</h2>
+
+                        <p class="left"><span class="grey">Состав</span><br>
+                            Обезжиренное молоко, цельное молоко с использованием закваски на основе молочнокислых микроорганизмов<br>
+                            <span class="grey">Количество</span><br>
+                            180 г<br>
+                            <span class="grey">Цена</span><br>
+                            70 ₽<br>
+                            <span class="grey">Пищевая ценность на 100 г</span><br>
+                            Белки: 16.0 г, Жиры: 9,0 г, Углеводы: 3,0, Калории: 157.0 ккал<br>
+                            <span class="grey">Срок годности</span><br>
+                            14 суток при температуре (4±2)°C
+                        </p>
+                    </div>
+                </div>
+
+                <div class="modal" id="my-modal4">
+                    <div class="modal_box">
+                        <button class="modal_close-btn" id="close-my-modal-btn4" onclick="closeModal()">
+                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
+                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
+                            </svg>
+                        </button>
+                        <img src="image/44.png" alt="" class="img">
+                        <h2>Пломбир коровка из кореновки</h2>
+
+                        <p class="left"><span class="grey">Состав</span><br>
+                            Сливки, молоко цельное сгущенное с сахаром, молоко концентрированное обезжиренное, сахар, смесь пищевых эмульгаторов и стабилизаторов ( эмульгатор: моно- и диглицериды жирных кислот, стабилизаторы: камедь рожкового дерева, гуаровая камедь, каррагинан), ароматизатор ванилин<br>
+                            <span class="grey">Количество</span><br>
+                            100 г<br>
+                            <span class="grey">Цена</span><br>
+                            47 ₽<br>
+                            <span class="grey">Пищевая ценность на 100 г</span><br>
+                            Белки: 3.4 г, Жиры: 15,0 г, Углеводы: 19,0, Калории: 225.0 ккал<br>
+                            <span class="grey">Срок годности</span><br>
+                            18 месяцев при температуре не выше -18°С
+                        </p>
+                    </div>
+                </div>
+
+                <div class="modal" id="my-modal5">
+                    <div class="modal_box">
+                        <button class="modal_close-btn" id="close-my-modal-btn5" onclick="closeModal()">
+                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
+                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
+                            </svg>
+                        </button>
+                        <img src="image/33.png" alt="" class="img">
+                        <h2>Кефир коровка из кореновки 2,5%</h2>
+
+                        <p class="left"><span class="grey">Состав</span><br>
+                            Обезжиренное молоко, цельное молоко, закваска<br>
+                            <span class="grey">Количество</span><br>
+                            450 мл<br>
+                            <span class="grey">Цена</span><br>
+                            100 ₽<br>
+                            <span class="grey">Пищевая ценность на 100 г</span><br>
+                            Белки: 3.0 г, Жиры: 2,5 г, Углеводы: 4,0, Калории: 51.0 ккал<br>
+                            <span class="grey">Срок годности</span><br>
+                            10 суток при температуре (6±2)°C
+                        </p>
+                    </div>
+                </div>
+
+                <div class="modal" id="my-modal6">
+                    <div class="modal_box">
+                        <button class="modal_close-btn" id="close-my-modal-btn6" onclick="closeModal()">
+                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
+                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
+                            </svg>
+                        </button>
+                        <img src="image/66.png" alt="" class="img">
+                        <h2>Ряженка коровка из кореновки 2,5%</h2>
+
+                        <p class="left"><span class="grey">Состав</span><br>
+                            Цельное молоко, обезжиренное молоко с использованием закваски на основе молочнокислых микроорганизмов<br>
+                            <span class="grey">Количество</span><br>
+                            450 мл<br>
+                            <span class="grey">Цена</span><br>
+                            150 ₽<br>
+                            <span class="grey">Пищевая ценность на 100 г</span><br>
+                            Белки: 2.8 г, Жиры: 2,1 г, Углеводы: 13,0, Калории: 83.0 ккал<br>
+                            <span class="grey">Срок годности</span><br>
+                            7 суток при температуре (6±2)°C
+                        </p>
+                    </div>
+                </div>
+
+                <div class="modal" id="my-modal7">
+                    <div class="modal_box">
+                        <button class="modal_close-btn" id="close-my-modal-btn7" onclick="closeModal()">
+                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
+                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
+                            </svg>
+                        </button>
+                        <img src="image/77.png" alt="" class="img">
+                        <h2>Йогурт коровка из кореновки</h2>
+
+                        <p class="left"><span class="grey">Состав</span><br>
+                            цельное молоко, обезжиренное молоко, сахар, пищевой наполнитель «Злаки» (сахар, злаки (овес, ячмень, пшеница, рожь), глюкозно-фруктозный сироп, ароматизатор «злаки», регулятор кислотности лимонная кислота), сухое обезжиренное молоко, с использованием закваски на основе молочнокислых микроорганизмов<br>
+                            <span class="grey">Количество</span><br>
+                            450 мл<br>
+                            <span class="grey">Цена</span><br>
+                            110 ₽<br>
+                            <span class="grey">Пищевая ценность на 100 г</span><br>
+                            Белки: 2.1 г, Жиры: 2,8 г, Углеводы: 14,0, Калории: 87.0 ккал<br>
+                            <span class="grey">Срок годности</span><br>
+                            21 суток при температуре (4±2)°C
+                        </p>
+                    </div>
+                </div>
+
+                <div class="modal" id="my-modal8">
+                    <div class="modal_box">
+                        <button class="modal_close-btn" id="close-my-modal-btn8" onclick="closeModal()">
+                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
+                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
+                            </svg>
+                        </button>
+                        <img src="image/55.png" alt="" class="img">
+                        <h2>Сгущенка коровка из кореновки 8,5%</h2>
+
+                        <p class="left"><span class="grey">Состав</span><br>
+                            цельное молоко, обезжиренное молоко, сахар, пищевой наполнитель «Злаки» (сахар, злаки (овес, ячмень, пшеница, рожь), глюкозно-фруктозный сироп, ароматизатор «злаки», регулятор кислотности лимонная кислота), сухое обезжиренное молоко, с использованием закваски на основе молочнокислых микроорганизмов<br>
+                            <span class="grey">Количество</span><br>
+                            380 г<br>
+                            <span class="grey">Цена</span><br>
+                            70 ₽<br>
+                            <span class="grey">Пищевая ценность на 100 г</span><br>
+                            Белки: 8.5 г, Жиры: 7,2 г, Углеводы: 56,0, Калории: 339.0 ккал<br>
+                            <span class="grey">Срок годности</span><br>
+                            24 месяцев при температуре 0°С до +10°С |(23±2)°С
+                        </p>
                     </div>
                 </div>
             </div>
