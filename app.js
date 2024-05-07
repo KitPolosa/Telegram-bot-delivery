@@ -42,6 +42,16 @@ function toggleItem(itemId) {
     }
 }
 
+Telegram.WebApp.onEvent("mainButtonClicked", function() {
+    let data = {
+        items: Object.values(items).filter(item => item.quantity > 0),
+        totalPrice: calculateTotalPrice()
+    };
+    tg.sendData(JSON.stringify(data));
+});
+
+
+
 function openModal(element) {
             var productName = element.parentNode.querySelector('p').textContent;
             document.getElementById('product-name').textContent = productName;
@@ -50,15 +60,6 @@ function openModal(element) {
         function closeModal() {
     document.getElementById('my-modal').style.display = 'none';
 }
-
-document.getElementById("remove1").addEventListener("click", function() {
-    removeFromCart("Молоко коровка из кореновки 2,5%");
-});
-
-function removeFromCart(productName) {
-    Telegram.WebApp.sendData(`remove_from_cart:${productName}`);
-}
-
 
 document.getElementById("open-modal-btn").addEventListener("click", function() {
     document.getElementById("my-modal").classList.add("open")
@@ -277,4 +278,9 @@ document.getElementById("add8").addEventListener("click", function() {
 document.getElementById("subtract8").addEventListener("click", function() {
     updateQuantity("item8", -1);
     toggleItem("item8");
+});
+
+let clearCartButton = document.getElementById("clear-cart-btn");
+clearCartButton.addEventListener("click", function() {
+    tg.sendData(JSON.stringify({clear_cart: true}));
 });

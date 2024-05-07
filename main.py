@@ -13,6 +13,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 from keyboards.categories import categories_kb
 from keyboards.profile_kb import profile_kb
 from aiogram import types
+import json
 import datas
 
 load_dotenv()
@@ -41,43 +42,40 @@ async def process_catalog_button_click(message: types.Message):
 
 cart = {}
 
-@dp.message()
-async def web_app(callback_query):
-    json_data = callback_query.web_app_data.data
-    parsed_data = json.loads(json_data)
-    message = ""
-    for item in parsed_data['items']:
-        product_name = item['name']
-        price = item['price']
-        message += f"Продукт: {product_name}\n"
-        message += f"Стоимость: {price}\n\n"
+@dp.callback_query(lambda c: c.data == 'clear_cart')
+async def clear_cart_callback(query: types.CallbackQuery):
+    global cart
+    cart = {}
+    await query.answer("Корзина очищена.")
+    await query.message.delete()
 
-    message += f"Общая стоимость: {parsed_data['totalPrice']}"
+@dp.message(F.text == 'text')
+async def handle_data(message: types.Message):
+    data = json.loads(message.text)
+    if "items" in data:
+        for item_data in data["items"]:
+            item_id = item_data["id"]
+            quantity = item_data["quantity"]
+            cart[item_id] = quantity
+        await message.answer("Товары добавлены в корзину.")
+    elif "clear_cart" in data and data["clear_cart"]:
+        cart.clear()
+        await message.answer("Корзина очищена.")
 
-    # Добавляем информацию о товарах в корзине
-    for item in parsed_data['items']:
-        product_name = item['name']
-        quantity = item['quantity']
-        cart[product_name] = quantity
-
-    await bot.send_message(callback_query.from_user.id, f"""
-{message}
-""")
-
-    await bot.send_message('5275057849', f"""
-Новый заказ ✅
-
-{message}
-""")
-
-@dp.callback_query(lambda query: query.data.startswith('remove_from_cart'))
-async def remove_from_cart(callback_query):
-    product_name = callback_query.data.split(':')[1]
-    if product_name in cart:
-        del cart[product_name]
-        await bot.answer_callback_query(callback_query.id, text=f"Товар '{product_name}' удален из корзины.")
+@dp.message(Command("show_cart"))
+async def show_cart(message: types.Message):
+    if not cart:
+        await message.answer("Корзина пуста.")
     else:
-        await bot.answer_callback_query(callback_query.id, text=f"Товар '{product_name}' не найден в корзине.")
+        cart_text = "Содержимое вашей корзины:\n"
+        total_price = 0
+        for item_id, quantity in cart.items():
+            item_name = datas.items[item_id]["name"]
+            item_price = datas.items[item_id]["price"]
+            total_price += item_price * quantity
+            cart_text += f"{item_name}: {quantity} шт.\n"
+        cart_text += f"Общая стоимость: {total_price} ₽"
+        await message.answer(cart_text)
 
 #Регистрируем хендлеры регистрации
 dp.message.register(start_register, F.text=='Зарегистрироваться')
