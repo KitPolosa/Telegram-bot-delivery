@@ -47,9 +47,21 @@ Telegram.WebApp.onEvent("mainButtonClicked", function() {
         items: Object.values(items).filter(item => item.quantity > 0),
         totalPrice: calculateTotalPrice()
     };
-    tg.sendData(JSON.stringify(data));
+    sendDataToBot(data);
 });
 
+function sendDataToBot(data) {
+    fetch('http://127.0.0.1:8080/add_to_cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(message => console.log(message))
+    .catch(error => console.error('Error:', error));
+}
 
 
 function openModal(element) {

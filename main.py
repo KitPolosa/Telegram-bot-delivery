@@ -13,8 +13,8 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 from keyboards.categories import categories_kb
 from keyboards.profile_kb import profile_kb
 from aiogram import types
-import json
-import datas
+from aiogram.enums import ParseMode
+from aiohttp import web
 
 load_dotenv()
 
@@ -41,41 +41,58 @@ async def process_catalog_button_click(message: types.Message):
     await message.answer("Выберите одно из действий:", reply_markup=profile_kb)
 
 cart = {}
+async def handle_post(request):
+    data = await request.json()
+    items = data.get('items', [])
+    total_price = data.get('totalPrice', 0)
 
-@dp.callback_query(lambda c: c.data == 'clear_cart')
-async def clear_cart_callback(query: types.CallbackQuery):
+    for item in items:
+        item_id = item['id']
+        name = item['name']
+        quantity = item['quantity']
+        price = item['price']
+
+        if item_id in cart:
+            cart[item_id]['quantity'] += quantity
+        else:
+            cart[item_id] = {'name': name, 'quantity': quantity, 'price': price}
+
+    return web.Response(text=f"Added items to cart. Total price: {total_price}")
+
+
+async def clear_cart(message: types.Message):
     global cart
     cart = {}
-    await query.answer("Корзина очищена.")
-    await query.message.delete()
+    await message.answer("Корзина очищена.")
 
-@dp.message(F.text == 'text')
-async def handle_data(message: types.Message):
-    data = json.loads(message.text)
-    if "items" in data:
-        for item_data in data["items"]:
-            item_id = item_data["id"]
-            quantity = item_data["quantity"]
-            cart[item_id] = quantity
-        await message.answer("Товары добавлены в корзину.")
-    elif "clear_cart" in data and data["clear_cart"]:
-        cart.clear()
-        await message.answer("Корзина очищена.")
 
+# Обработка команды для очистки корзины
+@dp.message(Command("clear_cart"))
+async def clear_cart_command(message: types.Message):
+    await clear_cart(message)
+
+
+# Обработка команды для показа корзины
 @dp.message(Command("show_cart"))
-async def show_cart(message: types.Message):
+async def show_cart_command(message: types.Message):
     if not cart:
-        await message.answer("Корзина пуста.")
+        await message.answer("Ваша корзина пуста.")
     else:
-        cart_text = "Содержимое вашей корзины:\n"
+        cart_text = "<b>Корзина:</b>\n"
         total_price = 0
-        for item_id, quantity in cart.items():
-            item_name = datas.items[item_id]["name"]
-            item_price = datas.items[item_id]["price"]
-            total_price += item_price * quantity
-            cart_text += f"{item_name}: {quantity} шт.\n"
-        cart_text += f"Общая стоимость: {total_price} ₽"
-        await message.answer(cart_text)
+        for item_id, item_data in cart.items():
+            name = item_data['name']
+            quantity = item_data['quantity']
+            price = item_data['price']
+            total_price += quantity * price
+            cart_text += f"{name}: {quantity} шт. - {quantity * price} ₽\n"
+        cart_text += f"<b>Общая цена:</b> {total_price} ₽"
+        await message.answer(cart_text, parse_mode=ParseMode.HTML)
+
+
+# Настройка веб-приложения для обработки POST запросов
+app = web.Application()
+app.add_routes([web.post('/add_to_cart', handle_post)])
 
 #Регистрируем хендлеры регистрации
 dp.message.register(start_register, F.text=='Зарегистрироваться')
