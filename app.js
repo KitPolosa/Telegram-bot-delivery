@@ -51,6 +51,15 @@ function openModal(element) {
     document.getElementById('my-modal').style.display = 'none';
 }
 
+document.getElementById("remove1").addEventListener("click", function() {
+    removeFromCart("Молоко коровка из кореновки 2,5%");
+});
+
+function removeFromCart(productName) {
+    Telegram.WebApp.sendData(`remove_from_cart:${productName}`);
+}
+
+
 document.getElementById("open-modal-btn").addEventListener("click", function() {
     document.getElementById("my-modal").classList.add("open")
 })
@@ -126,6 +135,71 @@ Telegram.WebApp.onEvent("mainButtonClicked", function() {
 function calculateTotalPrice() {
     return Object.values(items).reduce((total, item) => total + (item.price * item.quantity), 0);
 }
+
+let cart = {}; // Объект для хранения товаров в корзине
+
+function addToCart(itemId) {
+    if (cart[itemId]) {
+        cart[itemId]++;
+    } else {
+        cart[itemId] = 1;
+    }
+    updateCartUI();
+}
+
+function removeFromCart(itemId) {
+    if (cart[itemId]) {
+        cart[itemId]--;
+        if (cart[itemId] === 0) {
+            delete cart[itemId];
+        }
+    }
+    updateCartUI();
+}
+
+function updateCartUI() {
+    let totalPrice = calcTotalPrice();
+    let cartItemsElement = document.getElementById("cart-items");
+    cartItemsElement.innerHTML = ""; // Очистка содержимого корзины перед обновлением
+
+    for (const [itemId, quantity] of Object.entries(cart)) {
+        let item = items[itemId];
+        let itemTotalPrice = item.price * quantity;
+
+        let cartItemElement = document.createElement("div");
+        cartItemElement.innerHTML = `
+            <p>${item.name} x ${quantity} - ${itemTotalPrice} ₽</p>
+            <button onclick="removeFromCart('${itemId}')">Удалить</button>
+        `;
+        cartItemsElement.appendChild(cartItemElement);
+    }
+
+    let totalPriceElement = document.getElementById("total-price");
+    totalPriceElement.textContent = `Общая цена: ${totalPrice} ₽`;
+
+    if (totalPrice > 0) {
+        tg.MainButton.setText(`Общая цена товаров: ${totalPrice}`);
+        if (!tg.MainButton.isVisible) {
+            tg.MainButton.show();
+        }
+    } else {
+        tg.MainButton.hide();
+    }
+}
+
+function calcTotalPrice() {
+    let totalPrice = 0;
+    for (const [itemId, quantity] of Object.entries(cart)) {
+        let item = items[itemId];
+        totalPrice += item.price * quantity;
+    }
+    return totalPrice;
+}
+
+// Обновление кнопок при загрузке страницы
+window.addEventListener("DOMContentLoaded", () => {
+    updateCartUI();
+});
 
 document.getElementById("add1").addEventListener("click", function() {
     updateQuantity("item1", 1);
