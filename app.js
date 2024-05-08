@@ -42,14 +42,6 @@ function toggleItem(itemId) {
     }
 }
 
-Telegram.WebApp.onEvent("mainButtonClicked", function() {
-    let data = {
-        items: Object.values(items).filter(item => item.quantity > 0),
-        totalPrice: calculateTotalPrice()
-    };
-    sendDataToBot(data);
-});
-
 function sendDataToBot(data) {
     fetch('http://127.0.0.1:8080/add_to_cart', {
         method: 'POST',
@@ -72,6 +64,25 @@ function openModal(element) {
         function closeModal() {
     document.getElementById('my-modal').style.display = 'none';
 }
+
+Telegram.WebApp.onEvent("mainButtonClicked", function() {
+    let data = {
+        items: Object.values(items).filter(item => item.quantity > 0),
+        totalPrice: calculateTotalPrice()
+    };
+    tg.sendData(JSON.stringify(data));
+});
+
+function clearCart() {
+    let data = { clearCart: true };
+    tg.sendData(JSON.stringify(data));
+}
+
+function viewCart() {
+    let data = { viewCart: true };
+    tg.sendData(JSON.stringify(data));
+}
+
 
 document.getElementById("open-modal-btn").addEventListener("click", function() {
     document.getElementById("my-modal").classList.add("open")
@@ -137,76 +148,8 @@ document.getElementById("close-my-modal-btn8").addEventListener("click", functio
     document.getElementById("my-modal8").classList.remove("open")
 })
 
-Telegram.WebApp.onEvent("mainButtonClicked", function() {
-    let data = {
-        items: Object.values(items).filter(item => item.quantity > 0),
-        totalPrice: calculateTotalPrice()
-    };
-    tg.sendData(JSON.stringify(data));
-});
-
 function calculateTotalPrice() {
     return Object.values(items).reduce((total, item) => total + (item.price * item.quantity), 0);
-}
-
-let cart = {}; // Объект для хранения товаров в корзине
-
-function addToCart(itemId) {
-    if (cart[itemId]) {
-        cart[itemId]++;
-    } else {
-        cart[itemId] = 1;
-    }
-    updateCartUI();
-}
-
-function removeFromCart(itemId) {
-    if (cart[itemId]) {
-        cart[itemId]--;
-        if (cart[itemId] === 0) {
-            delete cart[itemId];
-        }
-    }
-    updateCartUI();
-}
-
-function updateCartUI() {
-    let totalPrice = calcTotalPrice();
-    let cartItemsElement = document.getElementById("cart-items");
-    cartItemsElement.innerHTML = ""; // Очистка содержимого корзины перед обновлением
-
-    for (const [itemId, quantity] of Object.entries(cart)) {
-        let item = items[itemId];
-        let itemTotalPrice = item.price * quantity;
-
-        let cartItemElement = document.createElement("div");
-        cartItemElement.innerHTML = `
-            <p>${item.name} x ${quantity} - ${itemTotalPrice} ₽</p>
-            <button onclick="removeFromCart('${itemId}')">Удалить</button>
-        `;
-        cartItemsElement.appendChild(cartItemElement);
-    }
-
-    let totalPriceElement = document.getElementById("total-price");
-    totalPriceElement.textContent = `Общая цена: ${totalPrice} ₽`;
-
-    if (totalPrice > 0) {
-        tg.MainButton.setText(`Общая цена товаров: ${totalPrice}`);
-        if (!tg.MainButton.isVisible) {
-            tg.MainButton.show();
-        }
-    } else {
-        tg.MainButton.hide();
-    }
-}
-
-function calcTotalPrice() {
-    let totalPrice = 0;
-    for (const [itemId, quantity] of Object.entries(cart)) {
-        let item = items[itemId];
-        totalPrice += item.price * quantity;
-    }
-    return totalPrice;
 }
 
 // Обновление кнопок при загрузке страницы
@@ -290,9 +233,4 @@ document.getElementById("add8").addEventListener("click", function() {
 document.getElementById("subtract8").addEventListener("click", function() {
     updateQuantity("item8", -1);
     toggleItem("item8");
-});
-
-let clearCartButton = document.getElementById("clear-cart-btn");
-clearCartButton.addEventListener("click", function() {
-    tg.sendData(JSON.stringify({clear_cart: true}));
 });
