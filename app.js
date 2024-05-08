@@ -68,14 +68,17 @@ function openModal(element) {
 Telegram.WebApp.onEvent("mainButtonClicked", function() {
     let data = {
         items: Object.values(items).filter(item => item.quantity > 0),
-        totalPrice: calculateTotalPrice()
+        totalPrice: calcTotalPrice()
     };
     tg.sendData(JSON.stringify(data));
 });
 
+function calcTotalPrice() {
+    return Object.values(items).reduce((total, item) => total + (item.price * item.quantity), 0);
+}
+
 function clearCart() {
-    let data = { clearCart: true };
-    tg.sendData(JSON.stringify(data));
+    tg.sendData('');
 }
 
 function viewCart() {
