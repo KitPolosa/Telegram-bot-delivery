@@ -55,7 +55,6 @@ function sendDataToBot(data) {
     .catch(error => console.error('Error:', error));
 }
 
-
 function openModal(element) {
             var productName = element.parentNode.querySelector('p').textContent;
             document.getElementById('product-name').textContent = productName;
@@ -63,27 +62,6 @@ function openModal(element) {
         }
         function closeModal() {
     document.getElementById('my-modal').style.display = 'none';
-}
-
-Telegram.WebApp.onEvent("mainButtonClicked", function() {
-    let data = {
-        items: Object.values(items).filter(item => item.quantity > 0),
-        totalPrice: calcTotalPrice()
-    };
-    tg.sendData(JSON.stringify(data));
-});
-
-function calcTotalPrice() {
-    return Object.values(items).reduce((total, item) => total + (item.price * item.quantity), 0);
-}
-
-function clearCart() {
-    tg.sendData('');
-}
-
-function viewCart() {
-    let data = { viewCart: true };
-    tg.sendData(JSON.stringify(data));
 }
 
 
@@ -151,6 +129,13 @@ document.getElementById("close-my-modal-btn8").addEventListener("click", functio
     document.getElementById("my-modal8").classList.remove("open")
 })
 
+Telegram.WebApp.onEvent("mainButtonClicked", function() {
+    let data = {
+        items: items,
+        totalPrice: calculateTotalPrice()
+    };
+    tg.sendData(JSON.stringify(data));
+});
 function calculateTotalPrice() {
     return Object.values(items).reduce((total, item) => total + (item.price * item.quantity), 0);
 }

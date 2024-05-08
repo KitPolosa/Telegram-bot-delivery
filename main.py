@@ -39,42 +39,27 @@ async def process_catalog_button_click(message: types.Message):
     await message.answer("Выберите одно из действий:", reply_markup=profile_kb)
 
 @dp.message()
-async def handle_webapp_data(message: types.Message):
-    try:
-        data = json.loads(message.text)
-        items = data.get('items', [])
-        total_price = data.get('totalPrice', 0)
+async def web_app(callback_query):
+    json_data = callback_query.web_app_data.data
+    parsed_data = json.loads(json_data)
+    message = ""
+    for item in parsed_data['items']:
+        product_name = item['name']
+        price = item['price']
+        message += f"Продукт: {product_name}\n"
+        message += f"Стоимость: {price}\n\n"
 
-        response = "Товары в корзине:\n"
-        for item in items:
-            name = item.get('name', 'Unknown')
-            quantity = item.get('quantity', 0)
-            response += f"{name}: {quantity} шт.\n"
-            # Добавляем товар в корзину
-            cart[name] = quantity
+    message += f"Общая стоимость: {parsed_data['totalPrice']}"
 
-        response += f"Общая цена: {total_price} руб."
-        await message.answer(response)
-    except Exception as e:
-        await message.answer(f"Произошла ошибка: {e}")
+    await bot.send_message(callback_query.from_user.id, f"""
+{message}
+""")
 
-# Обработка команды /clearcart для очистки корзины
-@dp.message(Command('clearcart'))
-async def clear_cart(message: types.Message):
-    global cart
-    cart = {}
-    await bot.send_message(message.chat.id, "Корзина очищена.")
+    await bot.send_message('5275057849', f"""
+Новый заказ ✅
 
-# Обработка команды /viewcart для просмотра корзины
-@dp.message(Command('viewcart'))
-async def view_cart(message: types.Message):
-    if cart:
-        response = "Товары в корзине:\n"
-        for item, quantity in cart.items():
-            response += f"{item}: {quantity} шт.\n"
-            await message.answer(response)
-    else:
-        await message.answer("Корзина пуста.")
+{message}
+""")
 
 #Регистрируем хендлеры регистрации
 dp.message.register(start_register, F.text=='Зарегистрироваться')
