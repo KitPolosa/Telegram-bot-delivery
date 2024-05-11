@@ -13,6 +13,18 @@ let items = {
     item8: { id: "item8", price: 70, quantity: 0, name: "Сгущенка коровка из кореновки 8,5%" }
 };
 
+function openCart() {
+    window.location.href = "cart.html"; // Переходим на страницу корзины
+}
+
+function openCategory(category) {
+        window.location.href = category + ".html"; // Переходим на страницу категории
+}
+
+function goBack(category) {
+        window.location.href = category + ".html"; // Переходим на страницу категории
+}
+
 function updateQuantity(itemId, change) {
     let item = items[itemId];
     item.quantity += change;

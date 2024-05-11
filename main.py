@@ -13,6 +13,8 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 from keyboards.categories import categories_kb
 from keyboards.profile_kb import profile_kb
 from aiogram import types
+from aiogram.enums import ParseMode
+from aiohttp import web
 
 load_dotenv()
 
@@ -23,9 +25,10 @@ bot = Bot(token=token, parse_mode='HTML')
 dp = Dispatcher()
 
 web_app = WebAppInfo(url='https://kitpolosa.github.io/')
+basket = {}
 
 async def start_bot(bot: Bot):
-    await bot.send_message(admin_id, text='Здарова заебал')
+    await bot.send_message(admin_id, text='Привет')
 
 dp.startup.register(start_bot)
 dp.message.register(get_start, Command(commands='start'))
@@ -38,26 +41,29 @@ async def process_catalog_button_click(message: types.Message):
 async def process_catalog_button_click(message: types.Message):
     await message.answer("Выберите одно из действий:", reply_markup=profile_kb)
 
+
 @dp.message()
 async def web_app(callback_query):
-    json_data = callback_query.web_app_data.data
-    parsed_data = json.loads(json_data)
-    message = ""
-    for item in parsed_data['items']:
-        product_name = item['name']
-        price = item['price']
-        message += f"Продукт: {product_name}\n"
-        message += f"Стоимость: {price}\n\n"
+    if callback_query.web_app_data:
+        json_data = callback_query.web_app_data.data
+        parsed_data = json.loads(json_data)
+        message = ""
+        for item in parsed_data['items']:
+            product_name = item['name']
+            price = item['price']
+            quantity = item['quantity']
+            totalItemPrice = price * quantity
+            message += f"Продукт: {product_name}\n"
+            message += f"Стоимость: {totalItemPrice}\n"
+            message += f"Количество: {quantity}\n\n"
+            message += f"Общая стоимость: {parsed_data['totalPrice']}"
 
-    message += f"Общая стоимость: {parsed_data['totalPrice']}"
-
-    await bot.send_message(callback_query.from_user.id, f"""
+        await bot.send_message(callback_query.from_user.id, f"""
 {message}
 """)
 
     await bot.send_message('5275057849', f"""
 Новый заказ ✅
-
 {message}
 """)
 
@@ -66,8 +72,6 @@ dp.message.register(start_register, F.text=='Зарегистрироватьс�
 dp.message.register(register_name, RegisterState.regName)
 dp.message.register(register_phone, RegisterState.regPhone)
 dp.message.register(register_address, RegisterState.regAddress)
-
-
 
 async def start():
     await set_commands(bot)
