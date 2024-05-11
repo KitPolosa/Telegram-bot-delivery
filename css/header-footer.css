@@ -1,0 +1,161 @@
+/*header*/
+
+.header{
+    padding: 40px 0;
+    position: fixed;
+    margin-left: 20px;
+}
+
+.header .container{
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.logo{
+    vertical-align: bottom;
+    width: 90px;
+    height: 120px;
+}
+
+.main-title{
+    font-family: 'Merriweather', sans-serif;
+    font-size: 55px;
+    letter-spacing: 0.03em;
+    margin-bottom: 50px;
+}
+
+.menu{
+    margin-left: 100px;
+}
+
+.menu-list{
+    list-style: none;
+    display: flex;
+}
+
+.menu-item{
+    margin-right: 88px;
+}
+
+.circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--lightBack);
+}
+
+.circle img{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.circle:hover{
+    opacity: 80%;
+    background-color: var(--mainred);
+    transition: all 0.3s ease-in;
+    transform: rotate(360deg);
+    transition-duration: 0.8s;
+}
+
+
+/*главная страница - новое меню*/
+
+.main-content{
+    padding-top: 160px;
+    padding-bottom: 100px;
+}
+
+.main-content .container{
+    position: relative;
+}
+
+.main-info{
+    max-width: 608px;
+}
+
+.main-small-info{
+    background: var(--mainred);
+    border-radius: 100px;
+    padding: 12px 16px;
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.main-text{
+    max-width: 500px;
+    font-size: 24px;
+    line-height: 29px;
+    margin-bottom: 50px;
+}
+
+.main-image{
+    position: absolute;
+    top: 10px;
+    left: 560px;
+}
+
+/*кнопка вернуться наверх*/
+
+.back-to-top {
+    position: fixed;
+    right: 3rem;
+    bottom: 5rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background: var(--mainred);
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    opacity: 100%;
+    transition: opacity 0.5s;
+    color: var(--lightBack);
+}
+
+.back-to-top:hover {
+    opacity: 60%;
+}
+
+.hidden {
+    display: none;
+    opacity: 0%;
+}
+
+
+/*footer*/
+
+.footer{
+    padding: 60px 0;
+}
+
+.footer .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.rights{
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.footer-menu{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-item a {
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--white);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.footer-item a:hover{
+    border-bottom: 1px solid var(--white);
+    transition: all 0.3ms ease;
+}

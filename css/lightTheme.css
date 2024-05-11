@@ -1,0 +1,94 @@
+/*смена темы на тёмную/светлую*/
+.theme {
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--main-color);
+    background: var(--lightBack);
+    border: none;
+    border-radius: 20em;
+    width: 120px;
+    height: 50px;
+}
+
+
+html.light, .light body{
+    background: var(--lightBack);
+    color: var(--main-color);
+}
+
+.light .products-item,
+.light .help-form,
+.light .help-form-input input{
+    background: var(--lightBack);
+    border: 1px solid var(--lightBackground);
+}
+
+.light .menu-item a,
+.light .footer-item a{
+    color: var(--main-color);
+}
+
+.light .menu-item a:hover,
+.light .footer-item a:hover{
+    border-bottom: 1px solid var(--main-color);
+}
+
+.light .theme{
+    background: var(--lightBackground);
+    color: var(--white);
+
+}
+
+.light .back-to-top{
+    color: var(--lightBack);
+}
+
+.light .circle,
+.light .free,
+.light .card-body,
+.light .showCart.visible{
+    background-color: var(--lightBackground);
+}
+
+
+
+.light .help-form-input{
+    background: var(--productWeigth);
+}
+
+.light .help-form-input input{
+    color: var(--productWeigth);
+}
+
+.light .rouble,
+.light .total-price,
+.light .delivery-cost{
+    color: var(--white);
+}
+
+.light .radio-label{
+    background-color: var(--white);
+    color: var(--mainred);
+}
+
+.light .radio-hidden:checked + .radio-label {
+    color: var(--white);
+}
+
+#userComment{
+    color: black;
+}
+
+.light .product-button,
+.light .items,
+.light .button:hover,
+.light .back-to-top{
+    background-color: var(--LightTheme);
+}
+
+.light .main-small-info{
+    background-color: var(--itemBorder);
+    color: var(--white);
+}
+
+.light .logo{ filter: invert(22%) sepia(28%) saturate(5743%) hue-rotate(14deg) brightness(98%) contrast(91%); }
