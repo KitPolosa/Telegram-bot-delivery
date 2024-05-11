@@ -1,5 +1,73 @@
-<!-- Кнопка "Оформить заказ" -->
-<button class="checkout-btn" onclick="checkout()">Оформить заказ</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Корзина</title>
+</head>
+<body>
+    <h1>Корзина</h1>
+    <div id="cart-items">
+        <!-- Здесь будут отображаться выбранные товары -->
+    </div>
+    <p id="total-price">Общая цена: 0 ₽</p>
+    <button onclick="checkout()">Оформить заказ</button>
+    <button onclick="goBack()">Назад</button>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="app.js"></script>
+<script>
+    // Функция для отображения выбранных товаров в корзине
+    function displayCart() {
+        let cartItemsDiv = document.getElementById("cart-items");
+        cartItemsDiv.innerHTML = ""; // Очищаем содержимое корзины
 
-<!-- Отображение содержимого корзины -->
-<div id="cart-items"></div>
+        // Перебираем все выбранные товары и добавляем их в корзину
+        Object.values(items).forEach(item => {
+            if (item.quantity > 0) {
+                let itemDiv = document.createElement("div");
+                itemDiv.innerHTML = `<p>${item.name} - ${item.quantity} шт. - ${item.price * item.quantity} ₽</p>`;
+                cartItemsDiv.appendChild(itemDiv);
+            }
+        });
+
+        // Показываем общую цену в корзине
+        let totalPrice = calculateTotalPrice();
+        document.getElementById("total-price").textContent = `Общая цена: ${totalPrice} ₽`;
+    }
+
+    // Функция для оформления заказа
+    function checkout() {
+        let data = {
+            items: Object.values(items).filter(item => item.quantity > 0),
+            totalPrice: calculateTotalPrice()
+        };
+
+        // Отправляем данные о заказе на сервер
+        fetch('http://127.0.0.1:8080/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.text())
+        .then(message => {
+            alert(message); // Показываем сообщение о статусе заказа
+            clearCart(); // Очищаем корзину после оформления заказа
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // Функция для возврата на страницу выбора категории товаров
+    function goBack() {
+        window.location.href = "index.html"; // Переходим на главную страницу
+    }
+
+    // Обновляем содержимое корзины при загрузке страницы
+    window.addEventListener("DOMContentLoaded", () => {
+        displayCart();
+    });
+</script>
+</body>
+</html>

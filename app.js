@@ -34,62 +34,6 @@ function updateQuantity(itemId, change) {
     toggleItem(itemId);
 }
 
-let cart = {};
-
-// Функция для добавления товара в корзину
-function addToCart(itemId) {
-    if (!cart[itemId]) {
-        cart[itemId] = { quantity: 0 };
-    }
-    cart[itemId].quantity++;
-    updateCartUI();
-}
-
-// Функция для удаления товара из корзины
-function removeFromCart(itemId) {
-    if (cart[itemId] && cart[itemId].quantity > 0) {
-        cart[itemId].quantity--;
-    }
-    updateCartUI();
-}
-
-// Функция для обновления UI корзины
-function updateCartUI() {
-    let cartItems = document.getElementById('cart-items');
-    cartItems.innerHTML = '';
-
-    let totalPrice = 0;
-
-    for (let itemId in cart) {
-        let item = items[itemId];
-        if (cart[itemId].quantity > 0) {
-            let itemTotalPrice = item.price * cart[itemId].quantity;
-            totalPrice += itemTotalPrice;
-
-            let itemHTML = `
-                <div class="cart-item">
-                    <span>${item.name}</span>
-                    <span>Количество: ${cart[itemId].quantity}</span>
-                    <span>Цена: ${itemTotalPrice} ₽</span>
-                    <button onclick="removeFromCart('${itemId}')">Удалить</button>
-                </div>
-            `;
-            cartItems.innerHTML += itemHTML;
-        }
-    }
-
-    if (totalPrice > 0) {
-        let checkoutBtn = document.querySelector('.checkout-btn');
-        checkoutBtn.style.display = 'block';
-    }
-}
-
-// Функция для оформления заказа
-function checkout() {
-    let totalAmount = calculateTotalPrice();
-    // Здесь должен быть код для оплаты через ЮMoney
-}
-
 function toggleItem(itemId) {
     let item = items[itemId];
     let btn = document.getElementById("add" + itemId.slice(-1));
@@ -223,11 +167,11 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("add1").addEventListener("click", function() {
-    addToCart("item1");
+    updateQuantity("item1", 1);
 });
 
 document.getElementById("subtract1").addEventListener("click", function() {
-    removeFromCart("item1");
+    updateQuantity("item1", -1);
 });
 
 document.getElementById("add2").addEventListener("click", function() {
