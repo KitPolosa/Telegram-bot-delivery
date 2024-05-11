@@ -12,8 +12,6 @@ let items = {
     item7: { id: "item7", price: 110, quantity: 0, name: "Йогурт коровка из кореновки" },
     item8: { id: "item8", price: 70, quantity: 0, name: "Сгущенка коровка из кореновки 8,5%" }
 };
-let cartItems = {};
-let totalPrice = 0;
 
 function openCart() {
     window.location.href = "cart.html"; // Переходим на страницу корзины
@@ -32,47 +30,28 @@ function updateQuantity(itemId, change) {
     item.quantity += change;
     if (item.quantity < 0) item.quantity = 0;
     if (item.quantity > 10) item.quantity = 10;
-
-    // Добавляем товар в корзину или обновляем его количество
-    if (item.quantity > 0) {
-        cartItems[itemId] = { name: item.name, price: item.price, quantity: item.quantity };
-    } else {
-        delete cartItems[itemId];
-    }
-
     document.getElementById("qty" + itemId.slice(-1)).innerText = item.quantity;
     toggleItem(itemId);
-    updateCartUI();
 }
 
-function updateCartUI() {
-    let cartContainer = document.getElementById("cart-container");
-    cartContainer.innerHTML = ""; // Очищаем содержимое корзины
+function toggleItem(itemId) {
+    let item = items[itemId];
+    let btn = document.getElementById("add" + itemId.slice(-1));
+    let subtractBtn = document.getElementById("subtract" + itemId.slice(-1));
 
-    // Добавляем каждый товар в корзину
-    for (let itemId in cartItems) {
-        let item = cartItems[itemId];
-        let itemElement = document.createElement("div");
-        itemElement.innerHTML = `${item.name} - ${item.quantity} x ${item.price} ₽`;
-        cartContainer.appendChild(itemElement);
+    btn.classList.remove('added-to-cart');
+    btn.style.display = 'inline-block';
+    subtractBtn.style.display = 'inline-block';
+
+    let totalPrice = calculateTotalPrice();
+    if (totalPrice > 0) {
+        tg.MainButton.setText(`Общая цена товаров: ${totalPrice}`);
+        if (!tg.MainButton.isVisible) {
+            tg.MainButton.show();
+        }
+    } else {
+        tg.MainButton.hide();
     }
-
-    // Показываем или скрываем кнопку оформления заказа
-    let orderButton = document.getElementById("order-button");
-    orderButton.style.display = Object.keys(cartItems).length > 0 ? "block" : "none";
-
-    // Обновляем общую цену
-    totalPrice = calculateTotalPrice();
-}
-
-// Вызываем функцию при загрузке страницы
-window.addEventListener("DOMContentLoaded", () => {
-    updateCartUI();
-});
-
-function checkout() {
-    // Перенаправляем пользователя на страницу оплаты
-    window.location.href = `https://yoomoney.ru/quickpay/confirm.xml?account=ваш_номер_кошелька&quickpay=shop&payment-type-choice=on&shop-host=ваш_домен&targets=Заказ продуктов&sum=${totalPrice}&comment=Корзина`;
 }
 
 Telegram.WebApp.onEvent("mainButtonClicked", function() {
