@@ -39,10 +39,18 @@ function toggleItem(itemId) {
     let btn = document.getElementById("add" + itemId.slice(-1));
     let subtractBtn = document.getElementById("subtract" + itemId.slice(-1));
 
-    btn.classList.remove('added-to-cart');
-    btn.style.display = 'inline-block';
+    // Увеличиваем количество товара в корзине
+    item.quantity++;
+    // Обновляем количество товара на странице
+    document.getElementById("qty" + itemId.slice(-1)).innerText = item.quantity;
+
+    // Показываем кнопку "-" для уменьшения количества товара в корзине
     subtractBtn.style.display = 'inline-block';
 
+    // Добавляем товар в корзину
+    addToCart(item);
+
+    // Обновляем кнопку "Общая цена товаров" в приложении Telegram
     let totalPrice = calculateTotalPrice();
     if (totalPrice > 0) {
         tg.MainButton.setText(`Общая цена товаров: ${totalPrice}`);
@@ -52,6 +60,50 @@ function toggleItem(itemId) {
     } else {
         tg.MainButton.hide();
     }
+}
+
+function addToCart(item) {
+    // Добавляем товар в корзину
+    cart[item.id] = {
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity
+    };
+}
+
+// Функция для уменьшения количества товара в корзине
+function subtractItem(itemId) {
+    let item = items[itemId];
+    // Уменьшаем количество товара в корзине
+    item.quantity--;
+    // Обновляем количество товара на странице
+    document.getElementById("qty" + itemId.slice(-1)).innerText = item.quantity;
+
+    // Если количество товара стало равным 0, скрываем кнопку "-"
+    if (item.quantity === 0) {
+        document.getElementById("subtract" + itemId.slice(-1)).style.display = 'none';
+    }
+
+    // Удаляем товар из корзины, если его количество стало равным 0
+    if (item.quantity === 0) {
+        removeFromCart(itemId);
+    }
+
+    // Обновляем кнопку "Общая цена товаров" в приложении Telegram
+    let totalPrice = calculateTotalPrice();
+    if (totalPrice > 0) {
+        tg.MainButton.setText(`Общая цена товаров: ${totalPrice}`);
+        if (!tg.MainButton.isVisible) {
+            tg.MainButton.show();
+        }
+    } else {
+        tg.MainButton.hide();
+    }
+}
+
+function removeFromCart(itemId) {
+    // Удаляем товар из корзины
+    delete cart[itemId];
 }
 
 Telegram.WebApp.onEvent("mainButtonClicked", function() {
