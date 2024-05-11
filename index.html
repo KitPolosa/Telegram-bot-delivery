@@ -2,312 +2,209 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/mainController.css">
+    <link rel="shortcut icon" href="./img/style/sofa.png" type="image/x-icon">
+
+    <title>Cozy home</title>
 </head>
 <body>
-<div class="header">
-    <button class="cart-btn" onclick="goBack('main')">Назад</button>
-</div>
-<div class="header">
-    <button class="cart-btn" onclick="openCart()">Корзина</button>
-</div>
-    <h1>Молочные продукты</h1>
-    <div class="center">
+    <section class="main">
+        <header class="header">
+            <div class="container">
+                <div><img src="./img/style/logo.svg" alt="Что-то пошло не так" class="logo"></div>
+                <nav class="menu">
+                    <ul class="menu-list">
+                        <li class="menu-item"><a data-link="chairs"><div class="circle"><img src="./img/style/chairs.svg" alt="Упс.." title="Стулья"></div></a></li>
+                        <li class="menu-item"><a data-link="armchairs"><div class="circle"><img src="./img/style/couches.svg" alt="Упс.." title="Кресла"></div></a></li>
+                        <li class="menu-item"><a data-link="wardrobes"><div class="circle"><img src="./img/style/wardrobe.svg" alt="Упс.." title="Шкафы"></div></a></li>
+                        <li class="menu-item"><a data-link="sofas"><div class="circle"><img src="./img/style/beds.svg" alt="Упс.." title="Кровати и диваны"></div></a></li>
+                        <li class="menu-item"><a data-link="kitchen"><div class="circle"><img src="./img/style/kitchens.svg" alt="Упс.." title="Кухни"></div></a></li>
+                        <li class="menu-item"><a data-link="help"><div class="circle"><img src="./img/style/help.svg" alt="Упс.." title="Связаться с нами"></div></a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section class="main-content">
+            <div class="container">
+                <div class="main-info">
+                    <span class="main-small-info">Новая коллекция</span>
+                    <button class="theme themetoggle">
+                        <span class="ThemeInfo"></span>
+                    </button>
+                    <h4 class="main-title"> Качество, идущее в ногу с комфортом</h4>
+                    <p class="main-text">Cпешите заказать сезонные новинки и насладиться комфортом и качеством мебели. Мы готовы сделать бизайн-проект вашего дома бесплатно.</p>
+                    <div class="main-action">
+                        <button class="button glow-on-hover" id="main-info" type="button">Каталог</button>
+                    </div>
+                </div>
+                <img src="./img/style/frontPage.png" alt="Упс.." class="main-image">
+            </div>
+        </section>
+
+        <button class="back-to-top hidden" title="Вернуться наверх">	&#9650;</button>
+    </section>
+
+    <div class="purchase">
+                <section class="showCart">
+            <form action="./done.html">
+                <div class="card-body">
+                    <div class="cartHeader">
+                        <h5 class="card-title">Ваш заказ:</h4>
+                        <div class="cancel">&#10008;</div>
+                    </div>
+
+
+                    <div data-cart-empty class="empty"> Корзина пуста </div>
+
+                    <div class="cartContent">
+                        <div class="cart-wrapper"></div>
+
+                        <div class="cart-total">
+                            <p data-cart-delivery class="none">
+                                <span>Доставка:</span>
+                                <span class="delivery-cost">2500 ₽</span><br>
+                                <span class="deliveryText">Бесплатно при заказе от 50000 ₽</span>
+                            </p>
+                            <p class="emptyBucket none"><span>Итого:</span>
+                                <span class="total-price">0</span>
+                                <span class="rouble">₽</span></p>
+
+                            <div id="order-form" class="card-body none">
+                                <h5 class="card-title">Способ оплаты:</h4>
+                                <form>
+                                    <div class="form-group">
+                                        <input type="radio" name="payment" value="cash" id="cash-value" class="radio-hidden" required>
+						                <label for="cash-value" class="radio-label">Наличные</label>
+
+                                        <input type="radio" name="payment" value="card" id="card-value" class="radio-hidden">
+						                <label for="card-value" class="radio-label">По карте в офисе</label>
+
+                                        <input type="radio" name="payment" value="online" id="online-value" class="radio-hidden">
+						                <label for="online-value" class="radio-label">Онлайн</label>
+
+                                        <input type="radio" name="payment" value="loan" id="loan-value" class="radio-hidden">
+						                <label for="loan-value" class="radio-label">В кредит</label>
+
+                                        <textarea name="extra" id="userComment" cols="30" rows="3" maxlength="2000" placeholder="Оставить комментарий"></textarea>
+
+                                    </div>
+
+                                    <button  class="freeDelivery confirm disabled" >Оформить заказ</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <button class="cart cartIcon " id="cart" title="Купить">
+            <img class="cart__image" src="./img/style/cart.svg" alt="Cart" />
+            <div class="cart__num" id="cart_num">0</div>
+        </button>
+    </div>
+
+    <section class="products" id="chairs">
         <div class="container">
-            <div class="inner">
-                <div class="item" id="item1">
-                    <img src="image/11.png" alt="" class="img" id="open-modal-btn" onclick="openModal(this)">
-                    <p>Молоко коровка из кореновки 2,5%</p>
-                    <p>80 ₽</p>
-                    <div class="btn-container">
-                        <button class="btn" id="add1">+</button>
-                        <span id="qty1">0</span>
-                        <button class="btn" id="subtract1">-</button>
-                    </div>
+            <div class="title">Стулья</div>
+            <div class="products-items" id="chairCard"></div>
+        </div>
+    </section>
+
+
+    <section class="products" id="armchairs">
+        <div class="container">
+            <div class="title">Кресла</div>
+            <div class="products-items" id="armchairCard"></div>
+        </div>
+    </section>
+
+    <section class="products" id="wardrobes">
+        <div class="container">
+            <div class="title">Шкафы</div>
+            <div class="products-items" id="wardCard"></div>
+        </div>
+    </section>
+
+    <section class="products" id="sofas">
+        <div class="container">
+            <div class="title">Диваны</div>
+            <div class="products-items sofas">
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="kitchen">
+        <div class="container">
+            <div class="title">Кухни</div>
+            <div class="products-items" id="kitchenCard"></div>
+        </div>
+    </section>
+
+    <section class="help" id="help">
+        <div class="container">
+            <div class="title">Связаться с консультантом</div>
+
+            <div class="help-form">
+                <div class="help-form-text">
+                    Заполните все данные и наш менеджер свяжется с вами для консультации
                 </div>
 
-                <div class="item" id="item2">
-                    <img src="image/22.png" alt="" class="img" id="open-modal-btn2" onclick="openModal(this)">
-                    <p>Масло сливочное кубанский молочник 82,5%</p>
-                    <p>120 ₽</p>
-                    <div class="btn-container">
-                        <button class="btn" id="add2">+</button>
-                        <span id="qty2">0</span>
-                        <button class="btn" id="subtract2">-</button>
+                <div class="help-form-inputs">
+
+                    <div class="help-form-input">
+                        <input type="text" placeholder="Ваше имя" id="name">
                     </div>
-                </div>
 
-                <div class="item" id="item3">
-                    <img src="image/88.png" alt="" class="img" id="open-modal-btn3" onclick="openModal(this)">
-                    <p>Творог коровка из кореновки 9%</p>
-                    <p>70 ₽</p>
-                    <div class="btn-container">
-                        <button class="btn" id="add3">+</button>
-                        <span id="qty3">0</span>
-                        <button class="btn" id="subtract3">-</button>
+                    <div class="help-form-input">
+                        <input type="text" placeholder="Ваш телефон" id="phone">
                     </div>
-                </div>
 
-                <div class="item" id="item4">
-                    <img src="image/44.png" alt="" class="img" id="open-modal-btn4" onclick="openModal(this)">
-                    <p>Пломбир коровка из кореновки</p>
-                    <p>47 ₽</p>
-                    <div class="btn-container">
-                        <button class="btn" id="add4">+</button>
-                        <span id="qty4">0</span>
-                        <button class="btn" id="subtract4">-</button>
+                    <div class="help-form-input" >
+                        <input type="text" placeholder="Ваш вопрос" id="helpText" maxlength="2000">
                     </div>
-                </div>
 
-                <div class="item" id="item5">
-                    <img src="image/33.png" alt="" class="img" id="open-modal-btn5" onclick="openModal(this)">
-                    <p>Кефир коровка из кореновки 2,5%</p>
-                    <p>100 ₽</p>
-                    <div class="btn-container">
-                        <button class="btn" id="add5">+</button>
-                        <span id="qty5">0</span>
-                        <button class="btn" id="subtract5">-</button>
-                    </div>
-                </div>
-
-                <div class="item" id="item6">
-                    <img src="image/66.png" alt="" class="img" id="open-modal-btn6" onclick="openModal(this)">
-                    <p>Ряженка коровка из кореновки 2,5%</p>
-                    <p>150 ₽</p>
-                    <div class="btn-container">
-                        <button class="btn" id="add6">+</button>
-                        <span id="qty6">0</span>
-                        <button class="btn" id="subtract6">-</button>
-                    </div>
-                </div>
-
-                <div class="item" id="item7">
-                    <img src="image/77.png" alt="" class="img" id="open-modal-btn7" onclick="openModal(this)">
-                    <p>Йогурт коровка из кореновки</p>
-                    <p>110 ₽</p>
-                    <div class="btn-container">
-                        <button class="btn" id="add7">+</button>
-                        <span id="qty7">0</span>
-                        <button class="btn" id="subtract7">-</button>
-                    </div>
-                </div>
-
-                <div class="item" id="item8">
-                    <img src="image/55.png" alt="" class="img" id="open-modal-btn8" onclick="openModal(this)">
-                    <p>Сгущенка коровка из кореновки 8,5%</p>
-                    <p>70 ₽</p>
-                    <div class="btn-container">
-                        <button class="btn" id="add8">+</button>
-                        <span id="qty8">0</span>
-                        <button class="btn" id="subtract8">-</button>
-                    </div>
-                </div>
-
-                <div class="modal" id="my-modal">
-                    <div class="modal_box">
-                        <button class="modal_close-btn" id="close-my-modal-btn" onclick="closeModal()">
-                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
-                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
-                            </svg>
-                        </button>
-                        <img src="image/11.png" alt="" class="img">
-                        <h2>Молоко коровка из кореновки 2,5%</h2>
-
-                        <p class="left"><span class="grey">Состав</span><br>
-                            Цельное молоко, обезжиренное молоко<br>
-                            <span class="grey">Количество</span><br>
-                            900 мл<br>
-                            <span class="grey">Цена</span><br>
-                            80 ₽<br>
-                            <span class="grey">Пищевая ценность на 100 г</span><br>
-                            Белки: 3.0 г Жиры: 2,5 г Углеводы: 4,7 Калории: 55.0 ккал<br>
-                            <span class="grey">Срок годности</span><br>
-                            9 суток при температуре (4±2)°C
-                        </p>
-                    </div>
-                </div>
-
-                <div class="modal" id="my-modal2">
-                    <div class="modal_box">
-                        <button class="modal_close-btn" id="close-my-modal-btn2" onclick="closeModal()">
-                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
-                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
-                            </svg>
-                        </button>
-                        <img src="image/22.png" alt="" class="img">
-                        <h2>Масло сливочное кубанский молочник 82,5%</h2>
-
-                        <p class="left"><span class="grey">Состав</span><br>
-                            Пастеризованные сливки<br>
-                            <span class="grey">Количество</span><br>
-                            170 г<br>
-                            <span class="grey">Цена</span><br>
-                            120 ₽<br>
-                            <span class="grey">Пищевая ценность на 100 г</span><br>
-                            Белки: 0.6 г, Жиры: 82,5 г, Углеводы: 0,8, Калории: 748.0 ккал<br>
-                            <span class="grey">Срок годности</span><br>
-                            7 суток при температуре (4±2)°C
-                        </p>
-                    </div>
-                </div>
-
-                <div class="modal" id="my-modal3">
-                    <div class="modal_box">
-                        <button class="modal_close-btn" id="close-my-modal-btn3" onclick="closeModal()">
-                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
-                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
-                            </svg>
-                        </button>
-                        <img src="image/88.png" alt="" class="img">
-                        <h2>Творог коровка из кореновки 9%</h2>
-
-                        <p class="left"><span class="grey">Состав</span><br>
-                            Обезжиренное молоко, цельное молоко с использованием закваски на основе молочнокислых микроорганизмов<br>
-                            <span class="grey">Количество</span><br>
-                            180 г<br>
-                            <span class="grey">Цена</span><br>
-                            70 ₽<br>
-                            <span class="grey">Пищевая ценность на 100 г</span><br>
-                            Белки: 16.0 г, Жиры: 9,0 г, Углеводы: 3,0, Калории: 157.0 ккал<br>
-                            <span class="grey">Срок годности</span><br>
-                            14 суток при температуре (4±2)°C
-                        </p>
-                    </div>
-                </div>
-
-                <div class="modal" id="my-modal4">
-                    <div class="modal_box">
-                        <button class="modal_close-btn" id="close-my-modal-btn4" onclick="closeModal()">
-                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
-                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
-                            </svg>
-                        </button>
-                        <img src="image/44.png" alt="" class="img">
-                        <h2>Пломбир коровка из кореновки</h2>
-
-                        <p class="left"><span class="grey">Состав</span><br>
-                            Сливки, молоко цельное сгущенное с сахаром, молоко концентрированное обезжиренное, сахар, смесь пищевых эмульгаторов и стабилизаторов ( эмульгатор: моно- и диглицериды жирных кислот, стабилизаторы: камедь рожкового дерева, гуаровая камедь, каррагинан), ароматизатор ванилин<br>
-                            <span class="grey">Количество</span><br>
-                            100 г<br>
-                            <span class="grey">Цена</span><br>
-                            47 ₽<br>
-                            <span class="grey">Пищевая ценность на 100 г</span><br>
-                            Белки: 3.4 г, Жиры: 15,0 г, Углеводы: 19,0, Калории: 225.0 ккал<br>
-                            <span class="grey">Срок годности</span><br>
-                            18 месяцев при температуре не выше -18°С
-                        </p>
-                    </div>
-                </div>
-
-                <div class="modal" id="my-modal5">
-                    <div class="modal_box">
-                        <button class="modal_close-btn" id="close-my-modal-btn5" onclick="closeModal()">
-                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
-                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
-                            </svg>
-                        </button>
-                        <img src="image/33.png" alt="" class="img">
-                        <h2>Кефир коровка из кореновки 2,5%</h2>
-
-                        <p class="left"><span class="grey">Состав</span><br>
-                            Обезжиренное молоко, цельное молоко, закваска<br>
-                            <span class="grey">Количество</span><br>
-                            450 мл<br>
-                            <span class="grey">Цена</span><br>
-                            100 ₽<br>
-                            <span class="grey">Пищевая ценность на 100 г</span><br>
-                            Белки: 3.0 г, Жиры: 2,5 г, Углеводы: 4,0, Калории: 51.0 ккал<br>
-                            <span class="grey">Срок годности</span><br>
-                            10 суток при температуре (6±2)°C
-                        </p>
-                    </div>
-                </div>
-
-                <div class="modal" id="my-modal6">
-                    <div class="modal_box">
-                        <button class="modal_close-btn" id="close-my-modal-btn6" onclick="closeModal()">
-                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
-                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
-                            </svg>
-                        </button>
-                        <img src="image/66.png" alt="" class="img">
-                        <h2>Ряженка коровка из кореновки 2,5%</h2>
-
-                        <p class="left"><span class="grey">Состав</span><br>
-                            Цельное молоко, обезжиренное молоко с использованием закваски на основе молочнокислых микроорганизмов<br>
-                            <span class="grey">Количество</span><br>
-                            450 мл<br>
-                            <span class="grey">Цена</span><br>
-                            150 ₽<br>
-                            <span class="grey">Пищевая ценность на 100 г</span><br>
-                            Белки: 2.8 г, Жиры: 2,1 г, Углеводы: 13,0, Калории: 83.0 ккал<br>
-                            <span class="grey">Срок годности</span><br>
-                            7 суток при температуре (6±2)°C
-                        </p>
-                    </div>
-                </div>
-
-                <div class="modal" id="my-modal7">
-                    <div class="modal_box">
-                        <button class="modal_close-btn" id="close-my-modal-btn7" onclick="closeModal()">
-                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
-                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
-                            </svg>
-                        </button>
-                        <img src="image/77.png" alt="" class="img">
-                        <h2>Йогурт коровка из кореновки</h2>
-
-                        <p class="left"><span class="grey">Состав</span><br>
-                            цельное молоко, обезжиренное молоко, сахар, пищевой наполнитель «Злаки» (сахар, злаки (овес, ячмень, пшеница, рожь), глюкозно-фруктозный сироп, ароматизатор «злаки», регулятор кислотности лимонная кислота), сухое обезжиренное молоко, с использованием закваски на основе молочнокислых микроорганизмов<br>
-                            <span class="grey">Количество</span><br>
-                            450 мл<br>
-                            <span class="grey">Цена</span><br>
-                            110 ₽<br>
-                            <span class="grey">Пищевая ценность на 100 г</span><br>
-                            Белки: 2.1 г, Жиры: 2,8 г, Углеводы: 14,0, Калории: 87.0 ккал<br>
-                            <span class="grey">Срок годности</span><br>
-                            21 суток при температуре (4±2)°C
-                        </p>
-                    </div>
-                </div>
-
-                <div class="modal" id="my-modal8">
-                    <div class="modal_box">
-                        <button class="modal_close-btn" id="close-my-modal-btn8" onclick="closeModal()">
-                            <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z" fill="#333333"/>
-                                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333"/>
-                            </svg>
-                        </button>
-                        <img src="image/55.png" alt="" class="img">
-                        <h2>Сгущенка коровка из кореновки 8,5%</h2>
-
-                        <p class="left"><span class="grey">Состав</span><br>
-                            цельное молоко, обезжиренное молоко, сахар, пищевой наполнитель «Злаки» (сахар, злаки (овес, ячмень, пшеница, рожь), глюкозно-фруктозный сироп, ароматизатор «злаки», регулятор кислотности лимонная кислота), сухое обезжиренное молоко, с использованием закваски на основе молочнокислых микроорганизмов<br>
-                            <span class="grey">Количество</span><br>
-                            380 г<br>
-                            <span class="grey">Цена</span><br>
-                            70 ₽<br>
-                            <span class="grey">Пищевая ценность на 100 г</span><br>
-                            Белки: 8.5 г, Жиры: 7,2 г, Углеводы: 56,0, Калории: 339.0 ккал<br>
-                            <span class="grey">Срок годности</span><br>
-                            24 месяцев при температуре 0°С до +10°С |(23±2)°С
-                        </p>
-                    </div>
+                    <button class="button glow-on-hover" id="help-action">Заказать звонок</button>
                 </div>
             </div>
         </div>
-    </div>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script src="app.js"></script>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <ul class="menu-list footer-menu">
+                    <li class="footer-item"><a data-link="chairs">Стулья</a></li>
+                    <li class="footer-item"><a data-link="armchairs">Кресла</a></li>
+                    <li class="footer-item"><a data-link="wardrobes">Шкафы</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <ul class="menu-list footer-menu">
+                    <li class="footer-item"><a data-link="sofas">Диваны</a></li>
+                    <li class="footer-item"><a data-link="kitchen">Кухни</a></li>
+                </ul>
+
+            </div>
+            <div class="rights">&copy; Все права защищены</div>
+        </div>
+    </footer>
+
+    <script src="./js/updateDate.js"></script>
+    <script src="./js/toggleCartStatus.js"></script>
+    <script src="./js/goods/GoodsChairs.js"></script>
+    <script src="./js/goods/GoodArmchairs.js"></script>
+    <script src="./js/goods/GoodWardrobe.js"></script>
+    <script src="./js/goods/GoodKitchen.js"></script>
+	<script src="./js/goods/SofasRender.js"></script>
+	<script src="./js/ChangeTheme.js"></script>
+    <script src="./js/cart.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/backToTopButton.js"></script>
 </body>
 </html>
