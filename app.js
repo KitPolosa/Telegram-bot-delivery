@@ -90,6 +90,26 @@ function checkout() {
     // Здесь должен быть код для оплаты через ЮMoney
 }
 
+function toggleItem(itemId) {
+    let item = items[itemId];
+    let btn = document.getElementById("add" + itemId.slice(-1));
+    let subtractBtn = document.getElementById("subtract" + itemId.slice(-1));
+
+    btn.classList.remove('added-to-cart');
+    btn.style.display = 'inline-block';
+    subtractBtn.style.display = 'inline-block';
+
+    let totalPrice = calculateTotalPrice();
+    if (totalPrice > 0) {
+        tg.MainButton.setText(`Общая цена товаров: ${totalPrice}`);
+        if (!tg.MainButton.isVisible) {
+            tg.MainButton.show();
+        }
+    } else {
+        tg.MainButton.hide();
+    }
+}
+
 Telegram.WebApp.onEvent("mainButtonClicked", function() {
     let data = {
         items: Object.values(items).filter(item => item.quantity > 0),
