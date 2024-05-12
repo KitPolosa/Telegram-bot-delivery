@@ -6,7 +6,7 @@
 
 .products-items{
     display: grid;
-    grid-template-columns: repeat(2, 248px);
+    grid-template-columns: repeat(2, 150px);
     gap: 24px;
     margin-top: 70px;
     text-align: center;
@@ -20,8 +20,8 @@
 }
 
 .products-item-img{
-    height: 200px;
-	width: 200px;
+    height: 100px;
+	width: 100px;
 }
 
 .products-item-img img{
