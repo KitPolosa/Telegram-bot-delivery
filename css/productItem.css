@@ -7,7 +7,7 @@
 
 .products-items{
     display: grid;
-    grid-template-columns: repeat(2, 165px);
+    grid-template-columns: repeat(2, 162px);
     gap: 24px;
     margin-top: 70px;
     text-align: center;
