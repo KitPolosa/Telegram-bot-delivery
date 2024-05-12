@@ -5,7 +5,6 @@ const chairs = [
 		"title": "Кухонный стул",
 		"art": 288528,
 		"price": 1450,
-		"text": "Мягкий стул для кухни на деревянных ножках",
 		"imgSrc": "chair(2).png"
 	},
 	{
@@ -98,7 +97,6 @@ chairs.forEach ((chair) => {
 
                     <div class="products-item-title ">${chair.title}</div>
                     <div class="price__weight">арт: ${chair.art}</div>
-                    <div class="products-item-text">${chair.text}</div>
 
                     <div class="details-wrapper">
                         <div class="items counter-wrapper">
@@ -106,10 +104,10 @@ chairs.forEach ((chair) => {
                             <input type="number" min="1" max="200" value="1" id="amountInput" class="items__current"  data-counter>
                             <div class="items__control" data-action="plus">+</div>
                         </div>
-
-                        <div class="price">
+                    </div>
+                    
+                    <div class="price">
                             <div class="price__currency">${chair.price} ₽</div>
-                        </div>
                     </div>
 
                     <div class="products-action">
