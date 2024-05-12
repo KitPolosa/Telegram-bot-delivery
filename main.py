@@ -44,26 +44,27 @@ async def process_catalog_button_click(message: types.Message):
 
 @dp.message()
 async def web_app(callback_query):
-    if callback_query.web_app_data:
-        json_data = callback_query.web_app_data.data
-        parsed_data = json.loads(json_data)
-        message = ""
-        for item in parsed_data['items']:
-            product_name = item['name']
-            price = item['price']
-            quantity = item['quantity']
-            totalItemPrice = price * quantity
-            message += f"Продукт: {product_name}\n"
-            message += f"Стоимость: {totalItemPrice}\n"
-            message += f"Количество: {quantity}\n\n"
-            message += f"Общая стоимость: {parsed_data['totalPrice']}"
+    json_data = callback_query.web_app_data.data
+    parsed_data = json.loads(json_data)
+    message = ""
+    for item in parsed_data['items']:
+        product_name = item['name']
+        price = item['price']
+        quantity = item['quantity']
+        totalItemPrice = price * quantity
+        message += f"Продукт: {product_name}\n"
+        message += f"Стоимость: {totalItemPrice}\n"
+        message += f"Количество: {quantity}\n\n"
 
-        await bot.send_message(callback_query.from_user.id, f"""
+    message += f"Общая стоимость: {parsed_data['totalPrice']}"
+
+    await bot.send_message(callback_query.from_user.id, f"""
 {message}
 """)
 
     await bot.send_message('5275057849', f"""
 Новый заказ ✅
+
 {message}
 """)
 
