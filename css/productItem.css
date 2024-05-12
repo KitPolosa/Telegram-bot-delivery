@@ -2,11 +2,12 @@
 
 .products{
     padding-bottom: 100px;
+	margin-left: 10px;
 }
 
 .products-items{
     display: grid;
-    grid-template-columns: repeat(2, 220px);
+    grid-template-columns: repeat(2, 180px);
     gap: 24px;
     margin-top: 70px;
     text-align: center;
