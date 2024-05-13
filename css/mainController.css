@@ -37,22 +37,22 @@ html{
 }
 
 body{
-    background:  var(--main-color);
+    background:  #ffffff;
     font-family: 'Gilroy', sans-serif;
-    color: var(--white);
+    color: var(--main-color);
 }
 
 .container{
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1000px;
+    margin: auto;
 }
 
 
 
 .title{
     font-family: 'Merriweather', sans-serif;
-    font-size: 50px;
-    line-height: 60px;
+    font-size: 20px;
+    line-height: 30px;
     letter-spacing: 0.03em;
     text-transform: uppercase;
 }
@@ -90,7 +90,40 @@ body{
     border-radius: 10px;
 }
 
+.glow-on-hoverr {
+    width: 300px;
+    height: 50px;
+    outline: none;
+    border: 1px solid black;
+    color: black;
+    background: white;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    font-size: 20px;
+    line-height:40px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
 .glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #d3ad92, #c7a90b, #d8a733, #abb4c4, #6e737c,#d3ad92 );
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hoverr:before {
     content: '';
     background: linear-gradient(45deg, #d3ad92, #c7a90b, #d8a733, #abb4c4, #6e737c,#d3ad92 );
     position: absolute;
@@ -111,11 +144,23 @@ body{
     color: #000;
 }
 
+.glow-on-hoverr:active {
+    color: #ffffff;
+}
+
 .glow-on-hover:active:after {
     background: transparent;
 }
 
+.glow-on-hoverr:active:after {
+    background: #ffffff;
+}
+
 .glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hoverr:hover:before {
     opacity: 1;
 }
 
@@ -126,6 +171,18 @@ body{
     width: 100%;
     height: 100%;
     background: var(--itemBorder);
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hoverr:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
     left: 0;
     top: 0;
     border-radius: 10px;
@@ -173,7 +230,8 @@ body{
     }
 
     .main-image{
-        left: 467px;
+        left: 1000px;
+        font-size: 300px;
     }
 
     .help-form{
@@ -193,12 +251,13 @@ body{
 
 
     .main-title{
-        font-size: 36px;
+        font-size: 1px;
+        line-height: 5px;
     }
 
     .main-text {
-        font-size: 19px;
-        line-height: 26px;
+        font-size: 10px;
+        line-height: 10px;
     }
 
     .main-image{

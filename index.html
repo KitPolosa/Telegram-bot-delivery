@@ -11,37 +11,23 @@
 </head>
 <body>
     <section class="main">
-        <header class="header">
-            <div class="container">
-                <div><img src="./img/style/logo.svg" alt="Что-то пошло не так" class="logo"></div>
-                <nav class="menu">
-                    <ul class="menu-list">
-                        <li class="menu-item"><a data-link="chairs"><div class="circle"><img src="./img/style/chairs.svg" alt="Упс.." title="Стулья"></div></a></li>
-                        <li class="menu-item"><a data-link="armchairs"><div class="circle"><img src="./img/style/couches.svg" alt="Упс.." title="Кресла"></div></a></li>
-                        <li class="menu-item"><a data-link="wardrobes"><div class="circle"><img src="./img/style/wardrobe.svg" alt="Упс.." title="Шкафы"></div></a></li>
-                        <li class="menu-item"><a data-link="sofas"><div class="circle"><img src="./img/style/beds.svg" alt="Упс.." title="Кровати и диваны"></div></a></li>
-                        <li class="menu-item"><a data-link="kitchen"><div class="circle"><img src="./img/style/kitchens.svg" alt="Упс.." title="Кухни"></div></a></li>
-                        <li class="menu-item"><a data-link="help"><div class="circle"><img src="./img/style/help.svg" alt="Упс.." title="Связаться с нами"></div></a></li>
-
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
         <section class="main-content">
+            <div class="main-image"><img src="./img/style/KrasnodarGO.png" alt="Что-то пошло не так" class="logo"></div>
             <div class="container">
                 <div class="main-info">
-                    <span class="main-small-info">Новая коллекция</span>
-                    <button class="theme themetoggle">
-                        <span class="ThemeInfo"></span>
-                    </button>
-                    <h4 class="main-title"> Качество, идущее в ногу с комфортом</h4>
-                    <p class="main-text">Cпешите заказать сезонные новинки и насладиться комфортом и качеством мебели. Мы готовы сделать бизайн-проект вашего дома бесплатно.</p>
-                    <div class="main-action">
-                        <button class="button glow-on-hover" id="main-info" type="button">Каталог</button>
-                    </div>
+                    <h4 class="main-title"> КраснодарGO</h4>
+                    <p class="main-text">Быстрая доставка продуктов в Краснодаре</p>
+                    <nav class="menu">
+                        <ul class="menu-list">
+                            <button class="button glow-on-hoverr" id="main-info" type="button" class="menu-item"><a data-link="chairs">каталог</a></button>
+                            <li class="menu-item"><a data-link="chairs"><button class="button glow-on-hoverr" type="button"><img src="./img/style/молочка.png" alt="" style="vertical-align:middle" class="buttonImage">молочные продукты</button></a></li>
+                            <li class="menu-item"><a data-link="armchairs"><button class="button glow-on-hoverr" type="button"><img src="./img/style/мясорыба.png" alt="" style="vertical-align:middle" class="buttonImage">мясо и рыба</button></a></li>
+                            <li class="menu-item"><a data-link="wardrobes"><button class="button glow-on-hoverr" type="button"><img src="./img/style/воданапитки.png" alt="" style="vertical-align:middle" class="buttonImage">вода и напитки</button></a></li>
+                            <li class="menu-item"><a data-link="sofas"><button class="button glow-on-hoverr" type="button"><img src="./img/style/хлебвыпечка.png" alt="" style="vertical-align:middle" class="buttonImage">хлеб и выпечка</button></a></li>
+                            <li class="menu-item"><a data-link="kitchen"><button class="button glow-on-hoverr" type="button"><img src="./img/style/овощифрукты.png" alt="" style="vertical-align:middle" class="buttonImage">овощи и фрукты</button></a></li>
+                        </ul>
+                </nav>
                 </div>
-                <img src="./img/style/frontPage.png" alt="Упс.." class="main-image">
             </div>
         </section>
 
@@ -110,7 +96,7 @@
 
     <section class="products" id="chairs">
         <div class="container">
-            <div class="title">Стулья</div>
+            <div class="title">Молочные продукты</div>
             <div class="products-items" id="chairCard"></div>
         </div>
     </section>
@@ -118,21 +104,21 @@
 
     <section class="products" id="armchairs">
         <div class="container">
-            <div class="title">Кресла</div>
+            <div class="title">Мясо и рыба</div>
             <div class="products-items" id="armchairCard"></div>
         </div>
     </section>
 
     <section class="products" id="wardrobes">
         <div class="container">
-            <div class="title">Шкафы</div>
+            <div class="title">Вода и напитки</div>
             <div class="products-items" id="wardCard"></div>
         </div>
     </section>
 
     <section class="products" id="sofas">
         <div class="container">
-            <div class="title">Диваны</div>
+            <div class="title">Хлеб и выпечка</div>
             <div class="products-items sofas">
             </div>
         </div>
@@ -140,54 +126,24 @@
 
     <section class="products" id="kitchen">
         <div class="container">
-            <div class="title">Кухни</div>
+            <div class="title">Овощи и фрукты</div>
             <div class="products-items" id="kitchenCard"></div>
         </div>
     </section>
-
-    <section class="help" id="help">
-        <div class="container">
-            <div class="title">Связаться с консультантом</div>
-
-            <div class="help-form">
-                <div class="help-form-text">
-                    Заполните все данные и наш менеджер свяжется с вами для консультации
-                </div>
-
-                <div class="help-form-inputs">
-
-                    <div class="help-form-input">
-                        <input type="text" placeholder="Ваше имя" id="name">
-                    </div>
-
-                    <div class="help-form-input">
-                        <input type="text" placeholder="Ваш телефон" id="phone">
-                    </div>
-
-                    <div class="help-form-input" >
-                        <input type="text" placeholder="Ваш вопрос" id="helpText" maxlength="2000">
-                    </div>
-
-                    <button class="button glow-on-hover" id="help-action">Заказать звонок</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
                 <ul class="menu-list footer-menu">
-                    <li class="footer-item"><a data-link="chairs">Стулья</a></li>
-                    <li class="footer-item"><a data-link="armchairs">Кресла</a></li>
-                    <li class="footer-item"><a data-link="wardrobes">Шкафы</a></li>
+                    <li class="footer-item"><a data-link="chairs">Молочные продукты</a></li>
+                    <li class="footer-item"><a data-link="armchairs">Мясо и рыба</a></li>
+                    <li class="footer-item"><a data-link="wardrobes">Вода и напитки</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <ul class="menu-list footer-menu">
-                    <li class="footer-item"><a data-link="sofas">Диваны</a></li>
-                    <li class="footer-item"><a data-link="kitchen">Кухни</a></li>
+                    <li class="footer-item"><a data-link="sofas">Хлеб и выпечка</a></li>
+                    <li class="footer-item"><a data-link="kitchen">Овощи и фрукты</a></li>
                 </ul>
 
             </div>

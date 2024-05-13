@@ -2,82 +2,59 @@
 const chairs = [
 	{
 		"id": "02",
-		"title": "Кухонный стул",
+		"title": "Молоко коровка из кореновки 2,5%",
 		"art": 288528,
-		"price": 1450,
-		"imgSrc": "chair(2).png"
+		"price": 80,
+		"imgSrc": "11.png"
 	},
 	{
 		"id": "05",
-		"title": "Кухонный стул (пластик)",
+		"title": "Масло сливочное кубанский молочник 82,5%",
 		"art": 282388,
-		"price": 1200,
-		"text": "Пластиковый стул с металическими подпорками",
-		"imgSrc": "chair(5).png"
+		"price": 120,
+		"imgSrc": "22.png"
 	},
 	{
 		"id": "01",
-		"title": "Мягкий стул для кухни",
+		"title": "Творог коровка из кореновки 9%",
 		"art": 8952,
-		"price": 1900,
-		"text": "Мягкий стул со сьёмными чехлами и подушкой",
-		"imgSrc": "chair(1).png"
+		"price": 70,
+		"imgSrc": "88.png"
 	},
 	{
 		"id": "04",
-		"title": "Стул полусфера",
+		"title": "Пломбир коровка из кореновки",
 		"art": 952044,
-		"price": 2300,
-		"text": "Идеально подходил для отдыха в офисе и дома",
-		"imgSrc": "chair(4).png"
+		"price": 47,
+		"imgSrc": "44.png"
 	},
 	{
 		"id": "03",
-		"title": "Офисный стул",
+		"title": "Кефир коровка из кореновки 2,5%",
 		"art": 245678,
-		"price": 1900,
-		"text": "Крутящийся офисный стул с подьёмным механизмом",
-		"imgSrc": "chair(3).png"
+		"price": 100,
+		"imgSrc": "33.png"
 	},
 	{
 		"id": "08",
-		"title": "Кресло-стул",
+		"title": "Ряженка коровка из кореновки 2,5%",
 		"art": 95348,
-		"price": 2200,
-		"text": "Мягкое удобное кресло со сьёмными чехлами",
-		"imgSrc": "chair(8).png"
+		"price": 150,
+		"imgSrc": "66.png"
 	},
 	{
 		"id": "10",
-		"title": "Стул 'Comfi'",
+		"title": "Йогурт коровка из кореновки персиковый",
 		"art": 24856388,
-		"price": 3300,
-		"text": "Стул-кресло на ножках с высокой спинкой",
-		"imgSrc": "chair(10).png"
+		"price": 110,
+		"imgSrc": "77.png"
 	},
 	{
 		"id": "07",
-		"title": "Стул 'Comfi' (серый)",
+		"title": "Сгущенка коровка из кореновки 8,5%",
 		"art": 2828528,
-		"price": 3000,
-		"text": "Мягкий стул с подлокотниками в сером варианте",
-		"imgSrc": "chair(7).png"
-	},
-	{
-		"id": "06",
-		"title": "Стул 'Arto'",
-		"art": 2885248,
-		"price": 3900,
-		"text": "Высокий стул на ножках с резными боковинками",
-		"imgSrc": "chair(6).png"
-	},
-	{
-		"id": "09",
-		"title": "Стул 'Leak' (резной)",
-		"art": 289858,
-		"price": 5300,
-		"text": "Резной стул ручной работы в серебристом цвете",
-		"imgSrc": "chair(9).png"
+		"price": 70,
+		"imgSrc": "55.png"
 	}
 ]
 
@@ -92,7 +69,7 @@ chairs.forEach ((chair) => {
 
     <div class="products-item" data-id="${chair.id}">
                     <div class="products-item-img"> 
-                        <img src="./img/items/chairs/${chair.imgSrc}" alt="Упс..." class="productImg">
+                        <img src="./image/${chair.imgSrc}" alt="Упс..." class="productImg">
                     </div>
 
                     <div class="products-item-title ">${chair.title}</div>
