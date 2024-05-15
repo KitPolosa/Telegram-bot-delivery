@@ -156,14 +156,9 @@
         tg.MainButton.setText(`Общая цена товаров:`);
         tg.MainButton.show();
 
-        let priceTot = 0
-
         let order = document.getElementById("order")
         order.addEventListener("click", () => {
-            let data = {
-                items: priceTot
-            };
-            tg.sendData(JSON.stringify(data))
+            tg.sendData("some string that we need to send");
         })
 
         Telegram.WebApp.onEvent('mainButtonClicked', function(){
