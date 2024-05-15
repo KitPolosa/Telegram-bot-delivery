@@ -157,6 +157,9 @@
 
         let order = document.getElementById("order")
         order.addEventListener("click", () => {
+            let data = {
+                items: priceTot
+            };
             tg.sendData("some string that we need to send");
         })
 
