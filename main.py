@@ -1,5 +1,4 @@
 from aiogram import Bot, Dispatcher, F
-from aiogram.types import ContentType
 import asyncio
 from dotenv import load_dotenv
 import os
@@ -9,13 +8,9 @@ from handlers.start import get_start
 from state.register import RegisterState
 from handlers.register import start_register, register_name, register_phone, register_address
 from aiogram.filters import Command
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
-from keyboards.categories import categories_kb
+from aiogram.types import WebAppInfo, ReplyKeyboardMarkup, KeyboardButton, ContentType
 from keyboards.profile_kb import profile_kb
 from aiogram import types
-from aiogram.enums import ParseMode
-from aiohttp import web
 
 load_dotenv()
 
@@ -38,9 +33,20 @@ dp.message.register(get_start, Command(commands='start'))
 async def process_catalog_button_click(message: types.Message):
     await message.answer("Выберите одно из действий:", reply_markup=profile_kb)
 
-@dp.message(F.content_type == ContentType.web_app_data)
-async def web_app(message: types.Message):
-    await message.answer(message.web_app_data.data)
+@dp.message()
+async def web_app(callback_query):
+    json_data = callback_query.web_app_data.data
+    parsed_data = json.loads(json_data)
+    message = ""
+    await bot.send_message(parsed_data, f"""
+{message}
+""")
+
+    await bot.send_message('5275057849', f"""
+Новый заказ ✅
+
+{message}
+""")
 
 #Регистрируем хендлеры регистрации
 dp.message.register(start_register, F.text=='Зарегистрироваться')

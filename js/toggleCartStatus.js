@@ -2,6 +2,8 @@ let tg = window.Telegram.WebApp;
 tg.expand();
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#2cab37';
+tg.MainButton.setText(`Общая цена товаров: ${priceTotal}`);
+tg.MainButton.show();
 
 function toggleCartStatus() {
 
