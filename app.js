@@ -54,28 +54,6 @@ function toggleItem(itemId) {
     }
 }
 
-Telegram.WebApp.onEvent("mainButtonClicked", function() {
-    let data = {
-        items: Object.values(items).filter(item => item.quantity > 0),
-        totalPrice: calculateTotalPrice()
-    };
-    sendDataToBot(data);
-});
-
-function sendDataToBot(data) {
-    fetch('http://127.0.0.1:8080/add_to_cart', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.text())
-    .then(message => console.log(message))
-    .catch(error => console.error('Error:', error));
-}
-
-
 function openModal(element) {
             var productName = element.parentNode.querySelector('p').textContent;
             document.getElementById('product-name').textContent = productName;
@@ -149,13 +127,13 @@ document.getElementById("close-my-modal-btn8").addEventListener("click", functio
     document.getElementById("my-modal8").classList.remove("open")
 })
 
-Telegram.WebApp.onEvent("mainButtonClicked", function() {
-    let data = {
-        items: Object.values(items).filter(item => item.quantity > 0),
-        totalPrice: calculateTotalPrice()
-    };
-    tg.sendData(JSON.stringify(data));
-});
+//Telegram.WebApp.onEvent("mainButtonClicked", function() {
+    //let data = {
+        //items: Object.values(items).filter(item => item.quantity > 0),
+        //totalPrice: calculateTotalPrice()
+    //};
+    //tg.sendData(JSON.stringify(data));
+//});
 
 function calculateTotalPrice() {
     return Object.values(items).reduce((total, item) => total + (item.price * item.quantity), 0);
