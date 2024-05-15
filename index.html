@@ -163,11 +163,11 @@
             let data = {
                 items: priceTot
             };
-            tg.sendData("some string that we need to send");
+            tg.sendData(JSON.stringify(data))
         })
 
         Telegram.WebApp.onEvent('mainButtonClicked', function(){
-            tg.sendData(JSON.stringify(data))
+            tg.sendData("some string that we need to send");
             //при клике на основную кнопку отправляем данные в строковом виде
         });
     </script>
