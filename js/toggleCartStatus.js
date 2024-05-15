@@ -1,5 +1,7 @@
 let tg = window.Telegram.WebApp;
 tg.expand();
+tg.MainButton.textColor = '#FFFFFF';
+tg.MainButton.color = '#2cab37';
 
 function toggleCartStatus() {
 
@@ -43,6 +45,10 @@ function calcCartPriceAndDelivery() {
 
 	if (priceTotal > 0) {
 		cartDelivery.classList.remove('none');
+		tg.MainButton.setText(`Общая цена товаров: ${priceTotal}`);
+        if (!tg.MainButton.isVisible) {
+            tg.MainButton.show();
+        }
 	} else {
 		cartDelivery.classList.add('none');
 	}
@@ -70,9 +76,9 @@ order.addEventListener("click", () => {
     tg.sendData(JSON.stringify(data))
 })
 
-Telegram.WebApp.onEvent(function order() {
+Telegram.WebApp.onEvent("mainButtonClicked", function() {
     let data = {
         items: priceTot
     };
-    tg.sendData(JSON.stringify(data))
+    tg.sendData(JSON.stringify(data));
 });
