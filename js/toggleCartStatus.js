@@ -70,7 +70,7 @@ order.addEventListener("click", () => {
     tg.sendData(JSON.stringify(data))
 })
 
-Telegram.WebApp.onEvent(function send_web() {
+Telegram.WebApp.onEvent(function order() {
     let data = {
         items: priceTot
     };
