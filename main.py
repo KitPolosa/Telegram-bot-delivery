@@ -1,4 +1,5 @@
 from aiogram import Bot, Dispatcher, F
+from aiogram.types import ContentType
 import asyncio
 from dotenv import load_dotenv
 import os
@@ -33,40 +34,13 @@ async def start_bot(bot: Bot):
 dp.startup.register(start_bot)
 dp.message.register(get_start, Command(commands='start'))
 
-@dp.message(F.text == 'Каталог')
-async def process_catalog_button_click(message: types.Message):
-    await message.answer("Выберите категорию:", reply_markup=categories_kb)
-
 @dp.message(F.text == 'Вернуться в главное меню')
 async def process_catalog_button_click(message: types.Message):
     await message.answer("Выберите одно из действий:", reply_markup=profile_kb)
 
-
-@dp.message()
-async def web_app(callback_query):
-    json_data = callback_query.web_app_data.data
-    parsed_data = json.loads(json_data)
-    message = ""
-    for item in parsed_data['items']:
-        product_name = item['name']
-        price = item['price']
-        quantity = item['quantity']
-        totalItemPrice = price * quantity
-        message += f"Продукт: {product_name}\n"
-        message += f"Стоимость: {totalItemPrice}\n"
-        message += f"Количество: {quantity}\n\n"
-
-    message += f"Общая стоимость: {parsed_data['totalPrice']}"
-
-    await bot.send_message(callback_query.from_user.id, f"""
-{message}
-""")
-
-    await bot.send_message('5275057849', f"""
-Новый заказ ✅
-
-{message}
-""")
+@dp.message(F.content_type == ContentType.web_app_data)
+async def web_app(message: types.Message):
+    await message.answer(message.web_app_data.data)
 
 #Регистрируем хендлеры регистрации
 dp.message.register(start_register, F.text=='Зарегистрироваться')

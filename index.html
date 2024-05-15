@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/mainController.css">
-    <link rel="shortcut icon" href="./img/style/sofa.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./img/style/KrasnodarGO.png" type="image/x-icon">
 
-    <title>Cozy home</title>
+    <title>KrasnodarGO. Доставка продуктов в Краснодаре</title>
 </head>
 <body>
     <section class="main">
@@ -52,8 +52,8 @@
                         <div class="cart-total">
                             <p data-cart-delivery class="none">
                                 <span>Доставка:</span>
-                                <span class="delivery-cost">2500 ₽</span><br>
-                                <span class="deliveryText">Бесплатно при заказе от 50000 ₽</span>
+                                <span class="delivery-cost">200 ₽</span><br>
+                                <span class="deliveryText">Бесплатно от 500 ₽</span>
                             </p>
                             <p class="emptyBucket none"><span>Итого:</span>
                                 <span class="total-price">0</span>
@@ -67,19 +67,16 @@
 						                <label for="cash-value" class="radio-label">Наличные</label>
 
                                         <input type="radio" name="payment" value="card" id="card-value" class="radio-hidden">
-						                <label for="card-value" class="radio-label">По карте в офисе</label>
+						                <label for="card-value" class="radio-label">По карте</label>
 
                                         <input type="radio" name="payment" value="online" id="online-value" class="radio-hidden">
 						                <label for="online-value" class="radio-label">Онлайн</label>
-
-                                        <input type="radio" name="payment" value="loan" id="loan-value" class="radio-hidden">
-						                <label for="loan-value" class="radio-label">В кредит</label>
 
                                         <textarea name="extra" id="userComment" cols="30" rows="3" maxlength="2000" placeholder="Оставить комментарий"></textarea>
 
                                     </div>
 
-                                    <button  class="freeDelivery confirm disabled" >Оформить заказ</button>
+                                    <button id="orderButton" class="freeDelivery confirm disabled">Оформить заказ</button>
                                 </form>
                             </div>
                         </div>
@@ -119,15 +116,14 @@
     <section class="products" id="sofas">
         <div class="container">
             <div class="title">Хлеб и выпечка</div>
-            <div class="products-items sofas">
-            </div>
+            <div class="products-items" id="sofasCard"></div>
         </div>
     </section>
 
     <section class="products" id="kitchen">
         <div class="container">
             <div class="title">Овощи и фрукты</div>
-            <div class="products-items" id="kitchenCard"></div>
+            <div class="products-items" id="kitchCard"></div>
         </div>
     </section>
 
@@ -156,11 +152,13 @@
     <script src="./js/goods/GoodsChairs.js"></script>
     <script src="./js/goods/GoodArmchairs.js"></script>
     <script src="./js/goods/GoodWardrobe.js"></script>
-    <script src="./js/goods/GoodKitchen.js"></script>
+    <script src="./js/goods/GoodKit.js"></script>
+    <script src="./js/goods/GoodSofas.js"></script>
 	<script src="./js/goods/SofasRender.js"></script>
 	<script src="./js/ChangeTheme.js"></script>
     <script src="./js/cart.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/backToTopButton.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </body>
 </html>
