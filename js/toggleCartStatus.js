@@ -1,3 +1,6 @@
+let tg = window.Telegram.WebApp;
+tg.expand();
+
 function toggleCartStatus() {
 
     const cartWrapper = document.querySelector('.cart-wrapper');
@@ -15,9 +18,11 @@ function toggleCartStatus() {
 		total.classList.add('none')
     }
 
-	amount.innerText = cartWrapper.children.length 
+	amount.innerText = cartWrapper.children.length
 
 }
+
+let priceTot = 0
 
 function calcCartPriceAndDelivery() {
 	const cartWrapper = document.querySelector('.cart-wrapper');
@@ -34,7 +39,7 @@ function calcCartPriceAndDelivery() {
 		priceTotal += parseInt(item.innerText) * parseInt(amountEl.value);
 	});
 
-	
+
 
 	if (priceTotal > 0) {
 		cartDelivery.classList.remove('none');
@@ -42,15 +47,32 @@ function calcCartPriceAndDelivery() {
 		cartDelivery.classList.add('none');
 	}
 
-	if (priceTotal >= 50000) {
+	if (priceTotal >= 500) {
 		deliveryCost.classList.add('free');
 		deliveryCost.innerText = 'бесплатно';
         deliveryText.innerText = ''
 		totalPriceEl.innerText = priceTotal;
 	} else {
 		deliveryCost.classList.remove('free');
-		deliveryCost.innerText = '2500 ₽';
-        deliveryText.innerText = 'Бесплатно при заказе от 50000 ₽'
-		totalPriceEl.innerText = priceTotal + 2500;
+		deliveryCost.innerText = '200 ₽';
+        deliveryText.innerText = 'Бесплатно от 500 ₽'
+		totalPriceEl.innerText = priceTotal + 200;
 	}
+	priceTot = priceTotal;
 }
+
+let order = document.getElementById("order")
+
+order.addEventListener("click", () => {
+	let data = {
+        items: priceTot
+    };
+    tg.sendData(JSON.stringify(data))
+})
+
+Telegram.WebApp.onEvent(function send_web() {
+    let data = {
+        items: priceTot
+    };
+    tg.sendData(JSON.stringify(data))
+});

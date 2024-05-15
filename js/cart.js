@@ -95,9 +95,9 @@ window.addEventListener('click', function (event) {
 												<input type="number" min="1" max="200" value=${productInfo.counter} id="amountInput" class="items__current"  data-counter>
 												<div class="items__control" data-action="plus">+</div>
 											</div>
-											<div class="price">
-												<div class="price__currency">${productInfo.price}</div>
-											</div>
+										</div>
+										<div class="price">
+											<div class="price__currency">${productInfo.price}</div>
 										</div>
 									</div>
 								</div>
