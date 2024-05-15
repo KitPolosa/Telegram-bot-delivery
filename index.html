@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/mainController.css">
     <link rel="shortcut icon" href="./img/style/KrasnodarGO.png" type="image/x-icon">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <title>KrasnodarGO. Доставка продуктов в Краснодаре</title>
 </head>
@@ -30,10 +31,8 @@
                 </div>
             </div>
         </section>
-
         <button class="back-to-top hidden" title="Вернуться наверх">	&#9650;</button>
     </section>
-
     <div class="purchase">
                 <section class="showCart">
             <form action="./done.html">
@@ -42,13 +41,9 @@
                         <h5 class="card-title">Ваш заказ:</h4>
                         <div class="cancel">&#10008;</div>
                     </div>
-
-
                     <div data-cart-empty class="empty"> Корзина пуста </div>
-
                     <div class="cartContent">
                         <div class="cart-wrapper"></div>
-
                         <div class="cart-total">
                             <p data-cart-delivery class="none">
                                 <span>Доставка:</span>
@@ -58,24 +53,18 @@
                             <p class="emptyBucket none"><span>Итого:</span>
                                 <span class="total-price">0</span>
                                 <span class="rouble">₽</span></p>
-
                             <div id="order-form" class="card-body none">
                                 <h5 class="card-title">Способ оплаты:</h4>
                                 <form>
                                     <div class="form-group">
                                         <input type="radio" name="payment" value="cash" id="cash-value" class="radio-hidden" required>
 						                <label for="cash-value" class="radio-label">Наличные</label>
-
                                         <input type="radio" name="payment" value="card" id="card-value" class="radio-hidden">
 						                <label for="card-value" class="radio-label">По карте</label>
-
                                         <input type="radio" name="payment" value="online" id="online-value" class="radio-hidden">
 						                <label for="online-value" class="radio-label">Онлайн</label>
-
                                         <textarea name="extra" id="userComment" cols="30" rows="3" maxlength="2000" placeholder="Оставить комментарий"></textarea>
-
                                     </div>
-
                                     <button id="order" class="freeDelivery confirm disabled">Оформить заказ</button>
                                 </form>
                             </div>
@@ -84,49 +73,41 @@
                 </div>
             </form>
         </section>
-
         <button class="cart cartIcon " id="cart" title="Купить">
             <img class="cart__image" src="./img/style/cart.svg" alt="Cart" />
             <div class="cart__num" id="cart_num">0</div>
         </button>
     </div>
-
     <section class="products" id="chairs">
         <div class="container">
             <div class="title">Молочные продукты</div>
             <div class="products-items" id="chairCard"></div>
         </div>
     </section>
-
-
     <section class="products" id="armchairs">
         <div class="container">
             <div class="title">Мясо и рыба</div>
             <div class="products-items" id="armchairCard"></div>
         </div>
     </section>
-
     <section class="products" id="wardrobes">
         <div class="container">
             <div class="title">Вода и напитки</div>
             <div class="products-items" id="wardCard"></div>
         </div>
     </section>
-
     <section class="products" id="sofas">
         <div class="container">
             <div class="title">Хлеб и выпечка</div>
             <div class="products-items" id="sofasCard"></div>
         </div>
     </section>
-
     <section class="products" id="kitchen">
         <div class="container">
             <div class="title">Овощи и фрукты</div>
             <div class="products-items" id="kitchCard"></div>
         </div>
     </section>
-
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
@@ -141,7 +122,6 @@
                     <li class="footer-item"><a data-link="sofas">Хлеб и выпечка</a></li>
                     <li class="footer-item"><a data-link="kitchen">Овощи и фрукты</a></li>
                 </ul>
-
             </div>
             <div class="rights">&copy; Все права защищены</div>
         </div>
@@ -184,5 +164,6 @@
     <script src="./js/main.js"></script>
     <script src="./js/backToTopButton.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
