@@ -156,15 +156,15 @@
         tg.MainButton.setText(`Общая цена товаров:`);
         tg.MainButton.show();
 
+        let TotalBi = 0
+
         let order = document.getElementById("order")
         order.addEventListener("click", () => {
-            tg.sendData("some string that we need to send");
+            let data = {
+                items: TotalBi
+            };
+            tg.sendData(JSON.stringify(data))
         })
-
-        Telegram.WebApp.onEvent('mainButtonClicked', function(){
-            tg.sendData("some string that we need to send");
-            //при клике на основную кнопку отправляем данные в строковом виде
-        });
     </script>
 
     <script src="./js/updateDate.js"></script>
