@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/mainController.css">
     <link rel="shortcut icon" href="./img/style/KrasnodarGO.png" type="image/x-icon">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <title>KrasnodarGO. Доставка продуктов в Краснодаре</title>
 </head>
@@ -147,6 +148,30 @@
         </div>
     </footer>
 
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.MainButton.textColor = '#FFFFFF';
+        tg.MainButton.color = '#2cab37';
+        tg.MainButton.setText(`Общая цена товаров:`);
+        tg.MainButton.show();
+
+        let priceTot = 0
+
+        let order = document.getElementById("order")
+        order.addEventListener("click", () => {
+            let data = {
+                items: priceTot
+            };
+            tg.sendData(JSON.stringify(data))
+        })
+
+        Telegram.WebApp.onEvent('mainButtonClicked', function(){
+            tg.sendData("some string that we need to send");
+            //при клике на основную кнопку отправляем данные в строковом виде
+        });
+    </script>
+
     <script src="./js/updateDate.js"></script>
     <script src="./js/toggleCartStatus.js"></script>
     <script src="./js/goods/GoodsChairs.js"></script>
@@ -159,6 +184,6 @@
     <script src="./js/cart.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/backToTopButton.js"></script>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
