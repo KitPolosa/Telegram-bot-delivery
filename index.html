@@ -148,9 +148,25 @@
         </div>
     </footer>
 
-    <script>
+    <script src="./js/toggleCartStatus.js">
+        import { totPr } from "./js/toggleCartStatus.js";
+        loadScript('./js/toggleCartStatus.js').then(() => totPr());
         let tg = window.Telegram.WebApp;
         tg.expand();
+        let pricTotal = 0;
+
+        let items = {
+            item1: { price: totPr }
+        };
+
+        let order = document.getElementById("order")
+        order.addEventListener("click", () => {
+            let data = {
+                items: items,
+                totalPric: totPr()
+            };
+            tg.sendData(JSON.stringify(data))
+        })
     </script>
 
     <script src="./js/updateDate.js"></script>

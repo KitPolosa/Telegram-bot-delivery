@@ -1,5 +1,3 @@
-let tg = window.Telegram.WebApp;
-tg.expand();
 function toggleCartStatus() {
 
     const cartWrapper = document.querySelector('.cart-wrapper');
@@ -59,19 +57,7 @@ function calcCartPriceAndDelivery() {
 
 	pricTotal = priceTotal;
 }
+
 function totPr() {
-	return pricTotal;
-}
-
-let items = {
-	item1: { pricTotal }
-};
-
-let order = document.getElementById("order")
-order.addEventListener("click", () => {
-	let data = {
-		items: items,
-		totalPric: totPr()
-	};
-	tg.sendData(JSON.stringify(data))
-})
+            return pricTotal;
+        }
