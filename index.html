@@ -149,10 +149,10 @@
     </footer>
 
     <script src="./js/toggleCartStatus.js">
-        import { totPr } from "./js/toggleCartStatus.js";
-        loadScript('./js/toggleCartStatus.js').then(() => totPr());
         let tg = window.Telegram.WebApp;
         tg.expand();
+        import { totPr } from "./js/toggleCartStatus.js";
+        loadScript('./js/toggleCartStatus.js').then(() => totPr());
         let pricTotal = 0;
 
         let items = {
