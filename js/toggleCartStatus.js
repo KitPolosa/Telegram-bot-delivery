@@ -1,3 +1,5 @@
+let tg = window.Telegram.WebApp;
+tg.expand();
 function toggleCartStatus() {
 
     const cartWrapper = document.querySelector('.cart-wrapper');
@@ -17,6 +19,8 @@ function toggleCartStatus() {
 
 	amount.innerText = cartWrapper.children.length
 }
+
+let pricTotal = 0;
 
 function calcCartPriceAndDelivery() {
 	const cartWrapper = document.querySelector('.cart-wrapper');
@@ -52,4 +56,22 @@ function calcCartPriceAndDelivery() {
         deliveryText.innerText = 'Бесплатно от 500 ₽'
 		totalPriceEl.innerText = priceTotal + 200;
 	}
+
+	pricTotal = priceTotal;
 }
+function totPr() {
+	return pricTotal;
+}
+
+let items = {
+	item1: { pricTotal }
+};
+
+let order = document.getElementById("order")
+order.addEventListener("click", () => {
+	let data = {
+		items: items,
+		totalPric: totPr()
+	};
+	tg.sendData(JSON.stringify(data))
+})
