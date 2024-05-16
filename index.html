@@ -151,13 +151,13 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
-        let priceTotal = 0;
+        let pricTotal = 0;
         function totPr() {
-            return priceTotal;
+            return pricTotal;
         }
 
         let items = {
-            item1: { price: totPr }
+            item1: { pricTotal }
         };
 
         let order = document.getElementById("order")
