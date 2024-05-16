@@ -151,20 +151,21 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
-        let pricTotal = 0;
+
+        let priceTotal = 0;
         function totPr() {
-            return pricTotal;
+            return priceTotal;
         }
 
         let items = {
-            item1: { pricTotal }
+            item1: { price: totPr() }
         };
 
         let order = document.getElementById("order")
         order.addEventListener("click", () => {
             let data = {
                 items: items,
-                totalPric: totPr()
+                totalpric: totPr()
             };
             tg.sendData(JSON.stringify(data))
         })
