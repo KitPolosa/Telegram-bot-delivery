@@ -151,17 +151,16 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
-        tg.MainButton.textColor = '#FFFFFF';
-        tg.MainButton.color = '#2cab37';
-        tg.MainButton.setText(`Общая цена товаров:`);
-        tg.MainButton.show();
 
         let TotalBi = 0
+        let items = {
+            TotalBi: 666
+        };
 
         let order = document.getElementById("order")
         order.addEventListener("click", () => {
             let data = {
-                items: TotalBi
+                items: items
             };
             tg.sendData(JSON.stringify(data))
         })
@@ -180,6 +179,5 @@
     <script src="./js/main.js"></script>
     <script src="./js/backToTopButton.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="app.js"></script>
 </body>
 </html>
