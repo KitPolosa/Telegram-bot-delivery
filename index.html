@@ -151,19 +151,8 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
-
-        const cartWrapper = document.querySelector('.cart-wrapper');
-        const priceElements = cartWrapper.querySelectorAll('.price__currency');
-        const totalPriceEl = document.querySelector('.total-price');
-        const deliveryCost = document.querySelector('.delivery-cost');
-        const cartDelivery = document.querySelector('[data-cart-delivery]');
-        const deliveryText = document.querySelector('.deliveryText')
         let priceTotal = 0;
         function totPr() {
-            priceElements.forEach(function (item) {
-                const amountEl = item.closest('.cart-item').querySelector('#amountInput');
-                priceTotal += parseInt(item.innerText) * parseInt(amountEl.value);
-            });
             return priceTotal;
         }
 
