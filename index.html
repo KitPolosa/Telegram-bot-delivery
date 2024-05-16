@@ -153,17 +153,21 @@
         tg.expand();
         import { totPr } from "./js/toggleCartStatus.js";
         loadScript('./js/toggleCartStatus.js').then(() => totPr());
-        let pricTotal = 0;
+        let priTotal = 0;
+
+        function totPre() {
+            return priTotal;
+        }
 
         let items = {
-            item1: { price: totPr }
+            item1: { price: totPre }
         };
 
         let order = document.getElementById("order")
         order.addEventListener("click", () => {
             let data = {
                 items: items,
-                totalPric: totPr()
+                totalPric: totPre
             };
             tg.sendData(JSON.stringify(data))
         })
