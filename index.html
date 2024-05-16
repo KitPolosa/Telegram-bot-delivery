@@ -148,26 +148,23 @@
         </div>
     </footer>
 
-    <script src="./js/toggleCartStatus.js">
+    <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
-        import { totPr } from "./js/toggleCartStatus.js";
-        loadScript('./js/toggleCartStatus.js').then(() => totPr());
-        let priTotal = 0;
-
-        function totPre() {
-            return priTotal;
+        let pricTotal = 0;
+        function totPr() {
+            return pricTotal;
         }
 
         let items = {
-            item1: { price: totPre }
+            item1: { pricTotal }
         };
 
         let order = document.getElementById("order")
         order.addEventListener("click", () => {
             let data = {
                 items: items,
-                totalPric: totPre
+                totalPric: totPr()
             };
             tg.sendData(JSON.stringify(data))
         })
