@@ -159,33 +159,12 @@
         const cartDelivery = document.querySelector('[data-cart-delivery]');
         const deliveryText = document.querySelector('.deliveryText')
         let priceTotal = 0;
-        function calcCartPriceAndDelivery() {
-
+        function totPr() {
             priceElements.forEach(function (item) {
                 const amountEl = item.closest('.cart-item').querySelector('#amountInput');
                 priceTotal += parseInt(item.innerText) * parseInt(amountEl.value);
             });
-
-            if (priceTotal > 0) {
-                cartDelivery.classList.remove('none');
-            } else {
-                cartDelivery.classList.add('none');
-            }
-
-            if (priceTotal >= 500) {
-                deliveryCost.classList.add('free');
-                deliveryCost.innerText = 'бесплатно';
-                deliveryText.innerText = ''
-                totalPriceEl.innerText = priceTotal;
-            } else {
-                deliveryCost.classList.remove('free');
-                deliveryCost.innerText = '200 ₽';
-                deliveryText.innerText = 'Бесплатно от 500 ₽'
-                totalPriceEl.innerText = priceTotal + 200;
-            }
-        }
-        function totPr() {
-            return totalPriceEl;
+            return priceTotal;
         }
 
         let items = {
