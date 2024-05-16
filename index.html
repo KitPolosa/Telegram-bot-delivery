@@ -151,23 +151,6 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
-        let pricTotal = 0;
-        function totPr() {
-            return pricTotal;
-        }
-
-        let items = {
-            item1: { pricTotal }
-        };
-
-        let order = document.getElementById("order")
-        order.addEventListener("click", () => {
-            let data = {
-                items: items,
-                totalPric: totPr()
-            };
-            tg.sendData(JSON.stringify(data))
-        })
     </script>
 
     <script src="./js/updateDate.js"></script>
