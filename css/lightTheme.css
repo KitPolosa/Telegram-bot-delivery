@@ -8,12 +8,13 @@
     border-radius: 20em;
     width: 120px;
     height: 50px;
+    margin-bottom: 40px;
 }
 
 
 html.light, .light body{
-    background: var(--lightBack);
-    color: var(--main-color);
+    background: var(--main-color);
+    color: var(--lightBack);
 }
 
 .light .products-item,
@@ -90,5 +91,3 @@ html.light, .light body{
     background-color: var(--itemBorder);
     color: var(--white);
 }
-
-.light .logo{ filter: invert(22%) sepia(28%) saturate(5743%) hue-rotate(14deg) brightness(98%) contrast(91%); }
