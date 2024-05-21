@@ -21,9 +21,15 @@
                     </button>
                     <h4 class="main-title"> КраснодарGO</h4>
                     <p class="main-text">Быстрая доставка продуктов в Краснодаре</p>
+                    <div class="form-group-search">
+                        <textarea name="extra" id="userSearch" cols="30" rows="3" maxlength="2000" placeholder="Поиск" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Поиск'"></textarea>
+                        <div class="products-action">
+                            <button class = "search-button" type="button" id="searchButton">Искать</button>
+                        </div>
+                    </div>
                     <nav class="menu">
                         <ul class="menu-list">
-                            <button class="button glow-on-hoverr" id="main-info" type="button" class="menu-item"><a data-link="chairs">каталог</a></button>
+                            <button class="button glow-on-hoverr" class="button glow-on-hoverr" id="main-info" type="button" class="menu-item"><a data-link="chairs">каталог</a></button>
                             <li class="menu-item"><a data-link="chairs"><button class="button glow-on-hoverr" type="button"><img src="./img/style/молочка.png" alt="" style="vertical-align:middle" class="buttonImage">молочные продукты</button></a></li>
                             <li class="menu-item"><a data-link="armchairs"><button class="button glow-on-hoverr" type="button"><img src="./img/style/мясорыба.png" alt="" style="vertical-align:middle" class="buttonImage">мясо и рыба</button></a></li>
                             <li class="menu-item"><a data-link="wardrobes"><button class="button glow-on-hoverr" type="button"><img src="./img/style/воданапитки.png" alt="" style="vertical-align:middle" class="buttonImage">вода и напитки</button></a></li>
@@ -147,8 +153,13 @@
         tg.expand();
 
         let priceTotal = 0;
+        const title = 0
         function totPr() {
             return priceTotal;
+        }
+
+        function titlePr() {
+            return title;
         }
 
         let items = {
@@ -159,10 +170,49 @@
         order.addEventListener("click", () => {
             let data = {
                 items: items,
-                totalpric: totPr()
+                totalpric: totPr(),
+                titleProd: titlePr()
             };
             tg.sendData(JSON.stringify(data))
         })
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('userSearch');
+    const searchButton = document.getElementById('searchButton');
+    const sections = document.querySelectorAll('.products');
+    const allProducts = [];
+
+    sections.forEach(section => {
+        const products = section.querySelectorAll('.products-item');
+        products.forEach(product => {
+            allProducts.push({
+                element: product,
+                title: product.querySelector('.products-item-title').textContent.toLowerCase(),
+                section: section
+            });
+        });
+    });
+
+    searchButton.addEventListener('click', () => {
+        const searchText = searchInput.value.toLowerCase().trim();
+
+        if (searchText === '') {
+            sections.forEach(section => section.style.display = 'block');
+            allProducts.forEach(product => product.element.style.display = 'block');
+        } else {
+            sections.forEach(section => section.style.display = 'none');
+            allProducts.forEach(product => {
+                if (product.title.includes(searchText)) {
+                    product.element.style.display = 'block';
+                    product.section.style.display = 'block';
+                } else {
+                    product.element.style.display = 'none';
+                }
+            });
+        }
+    });
+});
+
     </script>
 
     <script src="./js/updateDate.js"></script>
@@ -175,7 +225,7 @@
 	<script src="./js/goods/SofasRender.js"></script>
 	<script src="./js/ChangeTheme.js"></script>
     <script src="./js/cart.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="./js/main.js"></script>\
     <script src="./js/backToTopButton.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </body>

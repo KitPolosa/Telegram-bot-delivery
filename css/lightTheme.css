@@ -24,6 +24,11 @@ html.light, .light body{
     border: 1px solid var(--lightBackground);
 }
 
+.light .search-button{
+    background: var(--lightBackground);
+    color: var(--white);
+}
+
 .light .menu-item a,
 .light .footer-item a{
     color: var(--main-color);
@@ -78,6 +83,10 @@ html.light, .light body{
 
 #userComment{
     color: black;
+}
+
+.light #userSearch{
+    color: white;
 }
 
 .light .product-button,

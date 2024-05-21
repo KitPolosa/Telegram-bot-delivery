@@ -28,8 +28,6 @@ function calcCartPriceAndDelivery() {
 	const cartDelivery = document.querySelector('[data-cart-delivery]');
     const deliveryText = document.querySelector('.deliveryText')
 
-	let priceTotal = 0;
-
 	priceElements.forEach(function (item) {
 		const amountEl = item.closest('.cart-item').querySelector('#amountInput');
 		priceTotal += parseInt(item.innerText) * parseInt(amountEl.value);
@@ -54,10 +52,4 @@ function calcCartPriceAndDelivery() {
         deliveryText.innerText = 'Бесплатно от 500 ₽'
 		totalPriceEl.innerText = priceTotal + 200;
 	}
-
-	pricTotal = priceTotal;
 }
-
-function totPr() {
-            return pricTotal;
-        }

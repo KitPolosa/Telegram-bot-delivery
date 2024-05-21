@@ -342,3 +342,15 @@ body{
 .grey {
   color: grey;
 }
+
+.search-button{
+	cursor: pointer;
+    font-size: 16px;
+    color: var(--main-color);
+    background: var(--lightBack);
+    border: none;
+    border-radius: 20em;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 40px;
+}
