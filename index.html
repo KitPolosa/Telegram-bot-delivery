@@ -154,7 +154,6 @@
 
         let priceTotal = 0;
         let titles = "";
-        let allTitle = "";
         window.addEventListener('click', function (event) {
             if (event.target.hasAttribute('data-cart')) {
                 const card = event.target.closest('.products-item');
@@ -169,27 +168,12 @@
                 titles = productInfo.title
             }
         });
-        const cartWrapper = document.querySelector('.cart-wrapper');
-        const titleElements = cartWrapper.querySelectorAll('.products-item-title');
-
-        titleElements.forEach(function (item) {
-		const titleEl = item.closest('.cart-item').querySelector('#amountInput');
-		allTitle += titleEl.value;
-        });
         function totPr() {
             return priceTotal;
         }
 
         function titlePr() {
             return titles;
-        }
-
-        function titleCart() {
-            return titleElements;
-        }
-
-        function titleElem() {
-            return allTitle;
         }
 
         let items = {
@@ -201,9 +185,7 @@
             let data = {
                 items: items,
                 totalpric: totPr(),
-                titleProd: titlePr(),
-                titleProd2: titleCart(),
-                titleProd3: titleElem()
+                titleProd: titlePr()
             };
             tg.sendData(JSON.stringify(data))
         })
