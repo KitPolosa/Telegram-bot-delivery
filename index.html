@@ -153,13 +153,27 @@
         tg.expand();
 
         let priceTotal = 0;
-        const title = 0
+        let titles = "";
+        window.addEventListener('click', function (event) {
+            if (event.target.hasAttribute('data-cart')) {
+                const card = event.target.closest('.products-item');
+                const productInfo = {
+                    id: card.dataset.id,
+                    imgSrc: card.querySelector('.productImg').getAttribute('src'),
+                    title: card.querySelector('.products-item-title').innerText,
+                    art: card.querySelector('.price__weight').innerText,
+                    price: card.querySelector('.price__currency').innerText,
+                    counter: card.querySelector('[data-counter]').value,
+                };
+                titles = productInfo.title
+            }
+        });
         function totPr() {
             return priceTotal;
         }
 
         function titlePr() {
-            return title;
+            return titles;
         }
 
         let items = {
@@ -177,42 +191,41 @@
         })
 
         document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('userSearch');
-    const searchButton = document.getElementById('searchButton');
-    const sections = document.querySelectorAll('.products');
-    const allProducts = [];
+            const searchInput = document.getElementById('userSearch');
+            const searchButton = document.getElementById('searchButton');
+            const sections = document.querySelectorAll('.products');
+            const allProducts = [];
 
-    sections.forEach(section => {
-        const products = section.querySelectorAll('.products-item');
-        products.forEach(product => {
-            allProducts.push({
-                element: product,
-                title: product.querySelector('.products-item-title').textContent.toLowerCase(),
-                section: section
+            sections.forEach(section => {
+                const products = section.querySelectorAll('.products-item');
+                products.forEach(product => {
+                    allProducts.push({
+                        element: product,
+                        title: product.querySelector('.products-item-title').textContent.toLowerCase(),
+                        section: section
+                    });
+                });
             });
-        });
-    });
 
-    searchButton.addEventListener('click', () => {
-        const searchText = searchInput.value.toLowerCase().trim();
+            searchButton.addEventListener('click', () => {
+                const searchText = searchInput.value.toLowerCase().trim();
 
-        if (searchText === '') {
-            sections.forEach(section => section.style.display = 'block');
-            allProducts.forEach(product => product.element.style.display = 'block');
-        } else {
-            sections.forEach(section => section.style.display = 'none');
-            allProducts.forEach(product => {
-                if (product.title.includes(searchText)) {
-                    product.element.style.display = 'block';
-                    product.section.style.display = 'block';
+                if (searchText === '') {
+                    sections.forEach(section => section.style.display = 'block');
+                    allProducts.forEach(product => product.element.style.display = 'block');
                 } else {
-                    product.element.style.display = 'none';
+                    sections.forEach(section => section.style.display = 'none');
+                    allProducts.forEach(product => {
+                        if (product.title.includes(searchText)) {
+                            product.element.style.display = 'block';
+                            product.section.style.display = 'block';
+                        } else {
+                            product.element.style.display = 'none';
+                        }
+                    });
                 }
             });
-        }
-    });
-});
-
+        });
     </script>
 
     <script src="./js/updateDate.js"></script>
