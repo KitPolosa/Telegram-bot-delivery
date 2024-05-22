@@ -153,7 +153,7 @@
         tg.expand();
 
         let priceTotal = 0;
-        let titles = "";
+        let titles = [];
         window.addEventListener('click', function (event) {
             if (event.target.hasAttribute('data-cart')) {
                 const card = event.target.closest('.products-item');
@@ -168,6 +168,10 @@
                 titles = productInfo.title
             }
         });
+
+        const cartWrapper = document.querySelector('.cart-wrapper');
+        const titleElements = cartWrapper.querySelectorAll('.products-item-title');
+
         function totPr() {
             return priceTotal;
         }
