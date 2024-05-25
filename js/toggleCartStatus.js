@@ -16,8 +16,9 @@ function toggleCartStatus() {
     }
 
 	amount.innerText = cartWrapper.children.length
-
 }
+
+let pricTotal = 0;
 
 function calcCartPriceAndDelivery() {
 	const cartWrapper = document.querySelector('.cart-wrapper');
