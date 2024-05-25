@@ -23,19 +23,27 @@ function toggleCartStatus() {
 function calcCartPriceAndDelivery() {
 	const cartWrapper = document.querySelector('.cart-wrapper');
 	const priceElements = cartWrapper.querySelectorAll('.price__currency');
+	const productTitleElements = cartWrapper.querySelectorAll('.products-item-title');
 	const totalPriceEl = document.querySelector('.total-price');
 	const deliveryCost = document.querySelector('.delivery-cost');
 	const cartDelivery = document.querySelector('[data-cart-delivery]');
     const deliveryText = document.querySelector('.deliveryText')
 
 	let priceTotal = 0;
+	let productTitles = [];
 
 	priceElements.forEach(function (item) {
 		const amountEl = item.closest('.cart-item').querySelector('#amountInput');
 		priceTotal += parseInt(item.innerText) * parseInt(amountEl.value);
 	});
 
+	productTitleElements.forEach(item => {
+		productTitles.push(item.textContent.trim());
+	});
+
 	pricTotal = priceTotal;
+	const productTitlesString = productTitles.join(', ');
+	prodTitles = productTitlesString
 
 
 
