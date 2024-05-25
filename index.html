@@ -184,12 +184,24 @@
             item1: { price: totPr() }
         };
 
+        const cartWrap = document.querySelector('.cart-wrapper');
+        const productTitleElements = cartWrap.querySelectorAll('.price__currency');
+        let productTitles = [];
+        productTitleElements.forEach(item => {
+            productTitles.push(item.textContent.trim());
+        });
+        const productTitlesString = productTitles.join('\n');
+
+        function prodTitle() {
+            return productTitlesString;
+        }
+
         let order = document.getElementById("order")
         order.addEventListener("click", () => {
             let data = {
                 items: items,
                 totalpric: totPr(),
-                titleProd: titlePr()
+                titleProd: prodTitle()
             };
             tg.sendData(JSON.stringify(data))
         })
