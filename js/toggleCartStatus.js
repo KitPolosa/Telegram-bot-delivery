@@ -18,7 +18,7 @@ function toggleCartStatus() {
 	amount.innerText = cartWrapper.children.length
 }
 
-let pricTotal = 0;
+
 
 function calcCartPriceAndDelivery() {
 	const cartWrapper = document.querySelector('.cart-wrapper');
@@ -34,6 +34,8 @@ function calcCartPriceAndDelivery() {
 		const amountEl = item.closest('.cart-item').querySelector('#amountInput');
 		priceTotal += parseInt(item.innerText) * parseInt(amountEl.value);
 	});
+
+	pricTotal = priceTotal;
 
 
 

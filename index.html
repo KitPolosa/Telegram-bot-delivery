@@ -156,7 +156,7 @@
         let tg = window.Telegram.WebApp;
         tg.expand();
 
-        let priceTotal = 0;
+        let pricTotal = 0;
         let titles = "";
         window.addEventListener('click', function (event) {
             if (event.target.hasAttribute('data-cart')) {
@@ -173,7 +173,7 @@
             }
         });
         function totPr() {
-            return priceTotal;
+            return pricTotal;
         }
 
         function titlePr() {
