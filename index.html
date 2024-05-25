@@ -47,10 +47,15 @@
 
         <button class="back-to-top hidden" title="Вернуться наверх">	&#9650;</button>
     </section>
-
+    <script>
+        const onSubmit = (event) => {
+            console.log('here');
+            event.preventDefault();
+        }
+    </script>
     <div class="purchase">
                 <section class="showCart">
-            <form action="./done.html">
+            <form onsubmit="onSubmit">
                 <div class="card-body">
                     <div class="cartHeader">
                         <h5 class="card-title">Ваш заказ:</h4>
@@ -73,7 +78,7 @@
                                 <span class="total-price">0</span>
                                 <span class="rouble">₽</span></p>
 
-                            <div id="order-form" class="card-body none">
+                            <div id="order-form" class="card-body none" onsubmit="onSubmit">
                                 <form>
                                     <div class="form-group">
 
@@ -172,18 +177,15 @@
                     counter: card.querySelector('[data-counter]').value,
                 };
                 titlesArray.push(productInfo.title);
-                console.log(titlesArray)
             }
         });
-        let titles = titlesArray.join(', ');
-        console.log(titles);
+
         function totPr() {
             return pricTotal;
         }
 
         function titlePr() {
-            console.log(titles)
-            return titles.join('\n');
+            return titlesArray.join('\n');
         }
 
         let items = {
@@ -195,7 +197,8 @@
         }
 
         let order = document.getElementById("order")
-        order.addEventListener("click", () => {
+        order.addEventListener("click", (event) => {
+            event.preventDefault();
             let data = {
                 items: items,
                 totalpric: totPr(),
