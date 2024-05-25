@@ -16,9 +16,8 @@ function toggleCartStatus() {
     }
 
 	amount.innerText = cartWrapper.children.length
-}
 
-let pricTotal = 0;
+}
 
 function calcCartPriceAndDelivery() {
 	const cartWrapper = document.querySelector('.cart-wrapper');
@@ -27,6 +26,8 @@ function calcCartPriceAndDelivery() {
 	const deliveryCost = document.querySelector('.delivery-cost');
 	const cartDelivery = document.querySelector('[data-cart-delivery]');
     const deliveryText = document.querySelector('.deliveryText')
+
+	let priceTotal = 0;
 
 	priceElements.forEach(function (item) {
 		const amountEl = item.closest('.cart-item').querySelector('#amountInput');
