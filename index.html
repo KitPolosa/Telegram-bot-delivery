@@ -158,21 +158,22 @@
 
         let pricTotal = 0;
         let prodTitles = '';
-        let titles = "";
+        let titlesArray = [];
         window.addEventListener('click', function (event) {
             if (event.target.hasAttribute('data-cart')) {
                 const card = event.target.closest('.products-item');
                 const productInfo = {
                     id: card.dataset.id,
                     imgSrc: card.querySelector('.productImg').getAttribute('src'),
-                    title: card.querySelectorAll('.products-item-title').innerText,
+                    title: card.querySelector('.products-item-title').innerText,
                     art: card.querySelector('.price__weight').innerText,
                     price: card.querySelector('.price__currency').innerText,
                     counter: card.querySelector('[data-counter]').value,
                 };
-                titles = productInfo.title
+                titlesArray.push(productInfo.title);
             }
         });
+        let titles = titlesArray.join(', ');
         function totPr() {
             return pricTotal;
         }
