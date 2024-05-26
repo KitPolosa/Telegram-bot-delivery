@@ -106,6 +106,9 @@ window.addEventListener('click', function (event) {
 			cartWrapper.insertAdjacentHTML('beforeend', cartItemHTML);
 		}
 
+		titlesArray.push(productInfo.title);
+		amountArray.push(productInfo.counter);
+
 		card.querySelector('#amountInput').value = '1';
 
 		toggleCartStatus();

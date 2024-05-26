@@ -36,6 +36,8 @@ function calcCartPriceAndDelivery() {
 		priceTotal += parseInt(item.innerText) * parseInt(amountEl.value);
 	});
 
+	const productTitles = Array.from(productTitleElements, element => element.textContent);
+	productTitlesCopy = productTitles;
 	pricTotal = priceTotal;
 
 

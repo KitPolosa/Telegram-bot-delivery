@@ -55,7 +55,7 @@
     </script>
     <div class="purchase">
                 <section class="showCart">
-            <form onsubmit="onSubmit">
+            <form>
                 <div class="card-body">
                     <div class="cartHeader">
                         <h5 class="card-title">Ваш заказ:</h4>
@@ -78,7 +78,7 @@
                                 <span class="total-price">0</span>
                                 <span class="rouble">₽</span></p>
 
-                            <div id="order-form" class="card-body none" onsubmit="onSubmit">
+                            <div id="order-form" class="card-body none">
                                 <form>
                                     <div class="form-group">
 
@@ -164,6 +164,7 @@
         let pricTotal = 0;
         let titlesArray = [];
         let amountArray = [];
+        let productTitlesCopy;
         window.addEventListener('click', function (event) {
             if (event.target.hasAttribute('data-cart')) {
                 const card = event.target.closest('.products-item');
@@ -174,11 +175,9 @@
                     title: card.querySelector('.products-item-title').innerText,
                     art: card.querySelector('.price__weight').innerText,
                     price: card.querySelector('.price__currency').innerText,
-                    amount: card.querySelector('#amountInput').value,
                     counter: card.querySelector('[data-counter]').value,
                 };
                 titlesArray.push(productInfo.title);
-                amountArray.push(productInfo.amount);
             }
         });
 
@@ -187,7 +186,7 @@
         }
 
         function titlePr() {
-            return titlesArray.join('\n');
+            return productTitlesCopy;
         }
 
         function amountPr() {
@@ -213,8 +212,7 @@
                 items: items,
                 totalpric: totPr(),
                 titleProd: titlePr(),
-                amountProd: amountPr(),
-                combinedProd: combinedList()
+                amountProd: amountPr()
             };
             tg.sendData(JSON.stringify(data))
         })
