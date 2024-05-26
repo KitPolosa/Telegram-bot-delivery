@@ -23,7 +23,7 @@ function toggleCartStatus() {
 function calcCartPriceAndDelivery() {
 	const cartWrapper = document.querySelector('.cart-wrapper');
 	const priceElements = cartWrapper.querySelectorAll('.price__currency');
-	const productTitleElements = cartWrapper.querySelectorAll('.products-item-title');
+	const productTitleElements = document.querySelectorAll('.cart-wrapper .products-item-title');
 	const totalPriceEl = document.querySelector('.total-price');
 	const deliveryCost = document.querySelector('.delivery-cost');
 	const cartDelivery = document.querySelector('[data-cart-delivery]');
@@ -36,11 +36,11 @@ function calcCartPriceAndDelivery() {
 		priceTotal += parseInt(item.innerText) * parseInt(amountEl.value);
 	});
 
-	const productTitles = Array.from(productTitleElements, element => element.textContent);
-	productTitlesCopy = productTitles;
+	productTitleElements.forEach(item => {
+		productTitles.push(item.textContent.trim());
+	});
+
 	pricTotal = priceTotal;
-
-
 
 	if (priceTotal > 0) {
 		cartDelivery.classList.remove('none');

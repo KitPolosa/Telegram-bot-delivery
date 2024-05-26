@@ -164,7 +164,7 @@
         let pricTotal = 0;
         let titlesArray = [];
         let amountArray = [];
-        let productTitlesCopy;
+        let productTitles = [];
         window.addEventListener('click', function (event) {
             if (event.target.hasAttribute('data-cart')) {
                 const card = event.target.closest('.products-item');
@@ -178,6 +178,7 @@
                     counter: card.querySelector('[data-counter]').value,
                 };
                 titlesArray.push(productInfo.title);
+				amountArray.push(productInfo.counter);
             }
         });
 
@@ -186,7 +187,7 @@
         }
 
         function titlePr() {
-            return productTitlesCopy;
+            return productTitles.join('\n');
         }
 
         function amountPr() {
