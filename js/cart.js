@@ -1,86 +1,107 @@
-
 // открыть/закрыть корзину
 
-const cartButton = document.querySelector('.cartIcon')
-const cartFrame = document.querySelector('.showCart')
-const closeCart = document.querySelector('.cancel')
-const amount = document.querySelector('.cart__num')
-
+const cartButton = document.querySelector(".cartIcon");
+const cartFrame = document.querySelector(".showCart");
+const closeCart = document.querySelector(".cancel");
+const amount = document.querySelector(".cart__num");
 
 //кнопки для открытия и закрытия корзины
 
-cartButton.addEventListener('click', function (){
-    cartFrame.classList.toggle('visible')
-})
+cartButton.addEventListener("click", function () {
+  cartFrame.classList.toggle("visible");
+});
 
-closeCart.addEventListener('click', function () {
-    cartFrame.classList.remove('visible')
-})
-
-
+closeCart.addEventListener("click", function () {
+  cartFrame.classList.remove("visible");
+});
 
 //добавление товаров в корзину
 
-window.addEventListener('click', function (event) {
+window.addEventListener("click", function (event) {
+  let counter;
 
-    let counter;
+  if (
+    event.target.dataset.action === "plus" ||
+    event.target.dataset.action === "minus"
+  ) {
+    const counterWrapper = event.target.closest(".counter-wrapper");
+    counter = counterWrapper.querySelector("#amountInput");
+  }
 
-    if (event.target.dataset.action === 'plus' || event.target.dataset.action === 'minus') {
-		const counterWrapper = event.target.closest('.counter-wrapper');
-        counter = counterWrapper.querySelector('#amountInput');
-	}
+  if (event.target.dataset.action === "plus") {
+    counter.value = ++counter.value;
+    const productTitle = event.target.closest(
+      ".cart-wrapper .cart-item .cart-item__top"
+    ).lastElementChild.firstElementChild.innerText;
 
-	if (event.target.dataset.action === 'plus') {
-		counter.value = ++counter.value;
-	}
+    const index = titlesArray.findIndex((title) => title === productTitle);
+    amountArray[index] = counter.value;
+  }
 
-	if (event.target.dataset.action === 'minus') {
+  if (event.target.dataset.action === "minus") {
+    if (parseInt(counter.value) > 1) {
+      counter.value = --counter.value;
 
-		if (parseInt(counter.value) > 1) {
-			counter.value = --counter.value;
-		} else if (event.target.closest('.cart-wrapper') && parseInt(counter.value) === 1) {
-			event.target.closest('.cart-item').remove();
+      const productTitle = event.target.closest(
+        ".cart-wrapper .cart-item .cart-item__top"
+      ).lastElementChild.firstElementChild.innerText;
 
-			toggleCartStatus();
+      const index = titlesArray.findIndex((title) => title === productTitle);
+      amountArray[index] = counter.value;
+    } else if (
+      event.target.closest(".cart-wrapper") &&
+      parseInt(counter.value) === 1
+    ) {
+      const productTitle = event.target.closest(
+        ".cart-wrapper .cart-item .cart-item__top"
+      ).lastElementChild.firstElementChild.innerText;
 
-			calcCartPriceAndDelivery();
-		}
+      const index = titlesArray.findIndex((title) => title === productTitle);
+      titlesArray.splice(index, 1);
+      amountArray.splice(index, 1);
+      event.target.closest(".cart-item").remove();
 
-	}
+      toggleCartStatus();
 
-	if (event.target.hasAttribute('data-action') && event.target.closest('.cart-wrapper')) {
-		calcCartPriceAndDelivery();
-	}
+      calcCartPriceAndDelivery();
+    }
+  }
+
+  if (
+    event.target.hasAttribute("data-action") &&
+    event.target.closest(".cart-wrapper")
+  ) {
+    calcCartPriceAndDelivery();
+  }
 });
-
 
 //генерация товара в карточки корзины
 
-const cartWrapper =  document.querySelector('.cart-wrapper');
+const cartWrapper = document.querySelector(".cart-wrapper");
 
-window.addEventListener('click', function (event) {
-	if (event.target.hasAttribute('data-cart')) {
+window.addEventListener("click", function (event) {
+  if (event.target.hasAttribute("data-cart")) {
+    const card = event.target.closest(".products-item");
 
-		const card = event.target.closest('.products-item');
+    const productInfo = {
+      id: card.dataset.id,
+      imgSrc: card.querySelector(".productImg").getAttribute("src"),
+      title: card.querySelector(".products-item-title").innerText,
+      art: card.querySelector(".price__weight").innerText,
+      price: card.querySelector(".price__currency").innerText,
+      counter: card.querySelector("[data-counter]").value,
+    };
 
-		const productInfo = {
-			id: card.dataset.id,
-			imgSrc: card.querySelector('.productImg').getAttribute('src'),
-			title: card.querySelector('.products-item-title').innerText,
-			art: card.querySelector('.price__weight').innerText,
-			price: card.querySelector('.price__currency').innerText,
-			counter: card.querySelector('[data-counter]').value,
-		};
+    const itemInCart = cartWrapper.querySelector(
+      `[data-id="${productInfo.id}"]`
+    );
 
-
-		const itemInCart = cartWrapper.querySelector(`[data-id="${productInfo.id}"]`);
-
-		if (itemInCart) {
-			const counterElement = itemInCart.querySelector('[data-counter]');
-			counterElement.innerText = parseInt(counterElement.innerText) + parseInt(productInfo.counter);
-		} else {
-
-			const cartItemHTML = `<div class="cart-item" data-id="${productInfo.id}">
+    if (itemInCart) {
+      const counterElement = itemInCart.querySelector("[data-counter]");
+      counterElement.innerText =
+        parseInt(counterElement.innerText) + parseInt(productInfo.counter);
+    } else {
+      const cartItemHTML = `<div class="cart-item" data-id="${productInfo.id}">
 								<div class="cart-item__top">
 									<div class="cart-item__img">
 										<img src="${productInfo.imgSrc}" alt="${productInfo.title}">
@@ -103,27 +124,24 @@ window.addEventListener('click', function (event) {
 								</div>
 							</div>`;
 
-			cartWrapper.insertAdjacentHTML('beforeend', cartItemHTML);
-		}
+      cartWrapper.insertAdjacentHTML("beforeend", cartItemHTML);
+    }
 
-		card.querySelector('#amountInput').value = '1';
+    card.querySelector("#amountInput").value = "1";
 
-		toggleCartStatus();
+    toggleCartStatus();
 
-		calcCartPriceAndDelivery();
-
-	}
+    calcCartPriceAndDelivery();
+  }
 });
-
-
 
 //валидация кнопки в корзине
 
-const paymentType = document.querySelectorAll('input[name="payment"]')
-const confirm = document.querySelector('.confirm')
+const paymentType = document.querySelectorAll('input[name="payment"]');
+const confirm = document.querySelector(".confirm");
 
-for (const pay of paymentType){
-	pay.addEventListener('click', function () {
-		confirm.classList.remove('disabled')
-	}
-)}
+for (const pay of paymentType) {
+  pay.addEventListener("click", function () {
+    confirm.classList.remove("disabled");
+  });
+}
