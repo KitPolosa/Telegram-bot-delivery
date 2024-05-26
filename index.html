@@ -161,6 +161,7 @@
         let tg = window.Telegram.WebApp;
         tg.expand();
 
+        let commentInput = document.getElementById('userComment');
         let pricTotal = 0;
         let titlesArray = [];
         let amountArray = [];
@@ -202,6 +203,10 @@
             return resultArray.join('\n');
         }
 
+        function commentPr() {
+            return commentInput;
+        }
+
         let items = {
             item1: { price: totPr() }
         };
@@ -214,7 +219,8 @@
                 totalpric: totPr(),
                 titleProd: titlePr(),
                 amountProd: amountPr(),
-                combinedProd: combinedList()
+                combinedProd: combinedList(),
+                commentProd: commentPr()
             };
             tg.sendData(JSON.stringify(data))
         })
