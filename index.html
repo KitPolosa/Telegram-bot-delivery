@@ -194,6 +194,14 @@
             return amountArray.join(' ');
         }
 
+        function combinedList() {
+            let resultArray = [];
+            for (let i = 0; i < titlesArray.length; i++) {
+                resultArray.push(`${titlesArray[i]}, ${amountArray[i]}`);
+            }
+            return resultArray.join('\n');
+        }
+
         let items = {
             item1: { price: totPr() }
         };
@@ -205,7 +213,8 @@
                 items: items,
                 totalpric: totPr(),
                 titleProd: titlePr(),
-                amountProd: amountPr()
+                amountProd: amountPr(),
+                combinedProd: combinedList()
             };
             tg.sendData(JSON.stringify(data))
         })
