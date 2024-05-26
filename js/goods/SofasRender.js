@@ -1,16 +1,17 @@
-const productsContainer = document.querySelector(".sofas");
+
+const productsContainer = document.querySelector('.sofas');
 
 getSofas();
 
 async function getSofas() {
-  //const response = await fetch('./js/goods/sofas.json');
-  // const productsArray = await response.json();
-  // renderProducts(productsArray);
+    const response = await fetch('./js/goods/sofas.json');
+    const productsArray = await response.json();
+	renderProducts(productsArray);
 }
 
 function renderProducts(productsArray) {
-  productsArray.forEach(function (item) {
-    const productHTML = `
+    productsArray.forEach(function (item) {
+        const productHTML = `
 					<div class="products-item" data-id="${item.id}">
 						<div class="products-item-img"> 
 							<img src="./image/bread/${item.imgSrc}" alt="Упс..." class="productImg" id=${item.modal} onclick="openModal(this)">
@@ -189,87 +190,63 @@ function renderProducts(productsArray) {
                 </div>
                 </div>
 `;
-    productsContainer.insertAdjacentHTML("beforeend", productHTML);
-  });
+        productsContainer.insertAdjacentHTML('beforeend', productHTML);
+    });
 }
 
 function openModal(element) {
-  var productName = element.parentNode.querySelector("p").textContent;
-  document.getElementById("product-name").textContent = productName;
-  document.getElementById("my-modal").style.display = "block";
+            var productName = element.parentNode.querySelector('p').textContent;
+            document.getElementById('product-name').textContent = productName;
+            document.getElementById('my-modal').style.display = 'block';
+        }
+        function closeModal() {
+    document.getElementById('my-modal').style.display = 'none';
 }
-function closeModal() {
-  document.getElementById("my-modal").style.display = "none";
-}
 
-document
-  .getElementById("open-modal-btn41")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal41").classList.add("open");
-  });
+document.getElementById("open-modal-btn41").addEventListener("click", function() {
+    document.getElementById("my-modal41").classList.add("open")
+})
 
-document
-  .getElementById("close-my-modal-btn41")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal41").classList.remove("open");
-  });
+document.getElementById("close-my-modal-btn41").addEventListener("click", function() {
+    document.getElementById("my-modal41").classList.remove("open")
+})
 
-document
-  .getElementById("open-modal-btn42")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal42").classList.add("open");
-  });
+document.getElementById("open-modal-btn42").addEventListener("click", function() {
+    document.getElementById("my-modal42").classList.add("open")
+})
 
-document
-  .getElementById("close-my-modal-btn42")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal42").classList.remove("open");
-  });
+document.getElementById("close-my-modal-btn42").addEventListener("click", function() {
+    document.getElementById("my-modal42").classList.remove("open")
+})
 
-document
-  .getElementById("open-modal-btn43")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal43").classList.add("open");
-  });
+document.getElementById("open-modal-btn43").addEventListener("click", function() {
+    document.getElementById("my-modal43").classList.add("open")
+})
 
-document
-  .getElementById("close-my-modal-btn43")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal43").classList.remove("open");
-  });
+document.getElementById("close-my-modal-btn43").addEventListener("click", function() {
+    document.getElementById("my-modal43").classList.remove("open")
+})
 
-document
-  .getElementById("open-modal-btn44")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal44").classList.add("open");
-  });
+document.getElementById("open-modal-btn44").addEventListener("click", function() {
+    document.getElementById("my-modal44").classList.add("open")
+})
 
-document
-  .getElementById("close-my-modal-btn44")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal44").classList.remove("open");
-  });
+document.getElementById("close-my-modal-btn44").addEventListener("click", function() {
+    document.getElementById("my-modal44").classList.remove("open")
+})
 
-document
-  .getElementById("open-modal-btn45")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal45").classList.add("open");
-  });
+document.getElementById("open-modal-btn45").addEventListener("click", function() {
+    document.getElementById("my-modal45").classList.add("open")
+})
 
-document
-  .getElementById("close-my-modal-btn45")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal45").classList.remove("open");
-  });
+document.getElementById("close-my-modal-btn45").addEventListener("click", function() {
+    document.getElementById("my-modal45").classList.remove("open")
+})
 
-document
-  .getElementById("open-modal-btn46")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal46").classList.add("open");
-  });
+document.getElementById("open-modal-btn46").addEventListener("click", function() {
+    document.getElementById("my-modal46").classList.add("open")
+})
 
-document
-  .getElementById("close-my-modal-btn46")
-  .addEventListener("click", function () {
-    document.getElementById("my-modal46").classList.remove("open");
-  });
+document.getElementById("close-my-modal-btn46").addEventListener("click", function() {
+    document.getElementById("my-modal46").classList.remove("open")
+})

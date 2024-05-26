@@ -30,19 +30,13 @@ function calcCartPriceAndDelivery() {
     const deliveryText = document.querySelector('.deliveryText')
 
 	let priceTotal = 0;
-	let productTitles = [];
 
 	priceElements.forEach(function (item) {
 		const amountEl = item.closest('.cart-item').querySelector('#amountInput');
 		priceTotal += parseInt(item.innerText) * parseInt(amountEl.value);
 	});
 
-	productTitleElements.forEach(function (item) {
-		productTitles += parseInt(item.innerText);
-	});
-
 	pricTotal = priceTotal;
-	prodTitles = productTitles.join(', ');
 
 
 
