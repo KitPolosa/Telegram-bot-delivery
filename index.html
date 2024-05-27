@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/mainController.css">
+    <link rel="stylesheet" href="./main2.css">
+    <link rel="stylesheet" href="./css3.css">
     <link rel="shortcut icon" href="./img/style/KrasnodarGO.png" type="image/x-icon">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
@@ -30,15 +32,16 @@
                     <nav class="menu">
                         <ul class="menu-list">
                             <button class="button glow-on-hoverr" class="button glow-on-hoverr" id="main-info" type="button" class="menu-item"><a data-link="chairs">каталог</a></button>
+                            <li class="menu-item"><a data-link="sales"><button class="button glow-on-hoverr" type="button">акции и предложения</button></a></li>
                             <li class="menu-item"><a data-link="chairs"><button class="button glow-on-hoverr" type="button"><img src="./img/style/молочка.png" alt="" style="vertical-align:middle" class="buttonImage">молочные продукты</button></a></li>
                             <li class="menu-item"><a data-link="armchairs"><button class="button glow-on-hoverr" type="button"><img src="./img/style/мясорыба.png" alt="" style="vertical-align:middle" class="buttonImage">мясо и рыба</button></a></li>
                             <li class="menu-item"><a data-link="wardrobes"><button class="button glow-on-hoverr" type="button"><img src="./img/style/воданапитки.png" alt="" style="vertical-align:middle" class="buttonImage">вода и напитки</button></a></li>
                             <li class="menu-item"><a data-link="sofas"><button class="button glow-on-hoverr" type="button"><img src="./img/style/хлебвыпечка.png" alt="" style="vertical-align:middle" class="buttonImage">хлеб и выпечка</button></a></li>
                             <li class="menu-item"><a data-link="kitchen"><button class="button glow-on-hoverr" type="button"><img src="./img/style/овощифрукты.png" alt="" style="vertical-align:middle" class="buttonImage">овощи и фрукты</button></a></li>
-                            <li class="menu-item"><a data-link="kitchen"><button class="button glow-on-hoverr" type="button"><img src="./img/style/сыр.png" alt="" style="vertical-align:middle" class="buttonImage">сыр</button></a></li>
-                            <li class="menu-item"><a data-link="kitchen"><button class="button glow-on-hoverr" type="button"><img src="./img/style/сладкое.png" alt="" style="vertical-align:middle" class="buttonImage">сладкое и снеки</button></a></li>
-                            <li class="menu-item"><a data-link="kitchen"><button class="button glow-on-hoverr" type="button"><img src="./img/style/специи.png" alt="" style="vertical-align:middle" class="buttonImage">специи и приправы</button></a></li>
-                            <li class="menu-item"><a data-link="kitchen"><button class="button glow-on-hoverr" type="button"><img src="./img/style/куличи.png" alt="" style="vertical-align:middle" class="buttonImage">куличи</button></a></li>
+                            <li class="menu-item"><a data-link="cheese"><button class="button glow-on-hoverr" type="button"><img src="./img/style/сыр.png" alt="" style="vertical-align:middle" class="buttonImage">сыр</button></a></li>
+                            <li class="menu-item"><a data-link="snacks"><button class="button glow-on-hoverr" type="button"><img src="./img/style/сладкое.png" alt="" style="vertical-align:middle" class="buttonImage">сладкое и снеки</button></a></li>
+                            <li class="menu-item"><a data-link="coffee"><button class="button glow-on-hoverr" type="button"><img src="./img/style/кофечай.png" alt="" style="vertical-align:middle" class="buttonImage">кофе и чай</button></a></li>
+                            <li class="menu-item"><a data-link="kulich"><button class="button glow-on-hoverr" type="button"><img src="./img/style/куличи.png" alt="" style="vertical-align:middle" class="buttonImage">куличи</button></a></li>
                         </ul>
                 </nav>
                 </div>
@@ -101,6 +104,26 @@
         </button>
     </div>
 
+    <section class="products" id="sales">
+        <section class="main-content">
+            <div class="container">
+                <div class="main-info">
+                    <nav class="menu">
+                        <ul class="menu-lists">
+                            <p class="main-textss">Акции и предложения</p>
+                            <p><img src="./im/пасха.jpg" alt="Пасхальные предложения!" class="logos"></p>
+                            <p class="main-texts">Пасхальные предложения!</p>
+                            <li class="menu-item"><a data-link="kulich"><button class="buttons glow-on-hoverrs">Перейти</button></a></li>
+                            <p><img src="./im/свинина.jpg" alt="Свинина" class="logos"></p>
+                            <p class="main-texts">Скидки на свинину до 30%!</p>
+                            <li class="menu-item"><a data-link="armchairs"><button class="buttons glow-on-hoverrs">Перейти</button></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    </section>
+
     <section class="products" id="chairs">
         <div class="container">
             <div class="title">Молочные продукты</div>
@@ -137,6 +160,34 @@
         </div>
     </section>
 
+    <section class="products" id="cheese">
+        <div class="container">
+            <div class="title">Сыр</div>
+            <div class="products-items" id="cheeseCard"></div>
+        </div>
+    </section>
+
+    <section class="products" id="snacks">
+        <div class="container">
+            <div class="title">Сладкое и снеки</div>
+            <div class="products-items" id="snacksCard"></div>
+        </div>
+    </section>
+
+    <section class="products" id="coffee">
+        <div class="container">
+            <div class="title">Кофе и чай</div>
+            <div class="products-items" id="coffeeCard"></div>
+        </div>
+    </section>
+
+    <section class="products" id="kulich">
+        <div class="container">
+            <div class="title">Куличи</div>
+            <div class="products-items" id="kulichCard"></div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
@@ -150,6 +201,10 @@
                 <ul class="menu-list footer-menu">
                     <li class="footer-item"><a data-link="sofas">Хлеб и выпечка</a></li>
                     <li class="footer-item"><a data-link="kitchen">Овощи и фрукты</a></li>
+                    <li class="footer-item"><a data-link="cheese">Сыр</a></li>
+                    <li class="footer-item"><a data-link="snacks">Сладкое и снеки</a></li>
+                    <li class="footer-item"><a data-link="coffee">Кофе и чай</a></li>
+                    <li class="footer-item"><a data-link="kulich">Куличи</a></li>
                 </ul>
 
             </div>
@@ -268,6 +323,10 @@
     <script src="./js/goods/GoodWardrobe.js"></script>
     <script src="./js/goods/GoodKit.js"></script>
     <script src="./js/goods/GoodSofas.js"></script>
+    <script src="./js/goods/goodsKulich.js"></script>
+    <script src="./js/goods/GoodCheese.js"></script>
+    <script src="./js/goods/GoodSnacks.js"></script>
+    <script src="./js/goods/GoodCoffee.js"></script>
 	<script src="./js/goods/SofasRender.js"></script>
 	<script src="./js/ChangeTheme.js"></script>
     <script src="./js/cart.js"></script>

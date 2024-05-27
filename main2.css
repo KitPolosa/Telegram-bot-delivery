@@ -1,0 +1,126 @@
+@import './reset.css';
+@import './header-footer.css';
+@import './productItem.css';
+@import './lightTheme.css';
+@import './help.css';
+@import './cart.css';
+
+:root{
+    --main-color: #191411;
+    --white: white;
+    --mainred:#c7a90b;
+    --buttonYellow:#d8a733;
+
+    --productWeigth:#6c757d;
+    --itemBorder:#353535;
+    --LightTheme: #6e737c;
+
+    --darkText:#211A16;
+    --lightBackground:#abb4c4;
+    --lightBack: #f4f4f4;
+    --lightBorder:#d3ad92;
+}
+
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Semibold.ttf');
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('../fonts/Merriweather-Black.ttf');
+}
+
+.buttons{
+    background: var(--lightBack);
+    border-radius: 8px;
+    width: 260px;
+    height: 62px;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+    font-size: 18px;
+    color: var(--main-color);
+    font-weight: 600;
+    transition: all 0.3s ease-in;
+}
+
+.glow-on-hoverrs {
+    width: 300px;
+    height: 50px;
+    outline: none;
+    border: 1px solid black;
+    color: black;
+    background: white;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    font-size: 20px;
+    line-height:40px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.glow-on-hoverrs:before {
+    content: '';
+    background: linear-gradient(45deg, #d3ad92, #c7a90b, #d8a733, #abb4c4, #6e737c,#d3ad92 );
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hoverrs:active {
+    color: #ffffff;
+}
+
+.glow-on-hoverrs:active:after {
+    background: #ffffff;
+}
+
+.glow-on-hoverrs:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hoverrs:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.none{
+    display: none;
+}
+
+@media (max-width: 575px) {
+    .main-texts {
+        font-size: 12px;
+        line-height: 20px;
+    }
+}
