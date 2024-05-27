@@ -85,6 +85,10 @@ html.light, .light body{
     color: black;
 }
 
+#userAddress{
+    color: black;
+}
+
 .light #userSearch{
     color: white;
 }
